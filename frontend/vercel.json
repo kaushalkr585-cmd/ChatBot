@@ -3,6 +3,14 @@
   "framework": "vite",
   "rewrites": [
     {
+      "source": "/api/nvidia(.*)",
+      "destination": "https://integrate.api.nvidia.com/v1$1"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "https://<YOUR_DEPLOYED_BACKEND_URL>/api/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
