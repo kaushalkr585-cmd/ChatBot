@@ -8,7 +8,7 @@
     },
     {
       "source": "/api/(.*)",
-      "destination": "https://<YOUR_DEPLOYED_BACKEND_URL>/api/$1"
+      "destination": "https://chatbot-backend-tau-eight.vercel.app/api/$1"
     },
     {
       "source": "/(.*)",
