@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-import { AuthProvider } from './context/AuthContext'
-import { SettingsProvider } from './context/SettingsContext'
+import { AuthProvider } from './Context/AuthContext'
+import { SettingsProvider } from './Context/SettingsContext'
 
 // Global Error Boundary
 class ErrorBoundary extends Component {

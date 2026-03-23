@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { motion } from 'framer-motion';
 import { Copy, RefreshCw, Sparkles, User } from 'lucide-react';
 import { cn } from '../../utils/cn';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Context/AuthContext';
 
 const ChatMessage = ({ message }) => {
   const { user } = useAuth();

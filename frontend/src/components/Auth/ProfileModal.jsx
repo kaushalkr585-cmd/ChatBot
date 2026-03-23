@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Upload, Loader2, User as UserIcon } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Context/AuthContext';
 
 const ProfileModal = ({ isOpen, onClose }) => {
   const { user, updateProfilePic } = useAuth();

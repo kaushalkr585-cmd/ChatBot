@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Bot, User, Sparkles, Image as ImageIcon, Compass, Music, PenTool, Lightbulb, Zap } from 'lucide-react';
 import ChatMessage from './ChatMessage';
 import TypingIndicator from './TypingIndicator';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Context/AuthContext';
 
 const ChatArea = ({ messages, isTyping }) => {
   const bottomRef = useRef(null);

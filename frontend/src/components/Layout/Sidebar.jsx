@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Settings, Plus, History, LogOut, PenTool, Trash2 } from 'lucide-react';
 import { cn } from '../../utils/cn';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Context/AuthContext';
 
 const Sidebar = ({ isOpen, closeSidebar, onChatSelect, onNewChat, onSettingsClick, currentChatId, onChatDeleted }) => {
   const { user, token, logout } = useAuth();

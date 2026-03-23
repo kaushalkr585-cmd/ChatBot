@@ -7,8 +7,8 @@ import ChatInput from './components/Input/ChatInput';
 import AuthModal from './components/Auth/AuthModal';
 import ProfileModal from './components/Auth/ProfileModal';
 import SettingsModal from './components/Settings/SettingsModal';
-import { useAuth } from './context/AuthContext';
-import { useSettings } from './context/SettingsContext';
+import { useAuth } from './Context/AuthContext';
+import { useSettings } from './Context/SettingsContext';
 import OpenAI from 'openai';
 
 // OpenAI instance is now inside the App component to pick up window object reliably

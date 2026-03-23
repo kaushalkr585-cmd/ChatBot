@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Settings, Menu, User, Sparkles, LogIn } from 'lucide-react';
 import { cn } from '../../utils/cn';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../Context/AuthContext';
 
 const Header = ({ toggleSidebar, onAuthClick, onProfileClick, onSettingsClick }) => {
   const { user } = useAuth();

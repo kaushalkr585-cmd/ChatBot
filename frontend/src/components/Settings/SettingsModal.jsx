@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Moon, Sun, Globe } from 'lucide-react';
-import { useSettings } from '../../context/SettingsContext';
+import { useSettings } from '../../Context/SettingsContext';
 import { cn } from '../../utils/cn';
 
 const SettingsModal = ({ isOpen, onClose }) => {
