@@ -15,7 +15,7 @@ const ChatHeader = ({
   const { user } = useAuth();
 
   return (
-    <header className="flex shrink-0 items-center justify-between gap-3 border-b-[3px] border-[var(--border)] bg-[var(--surface)] px-4 py-3 lg:px-6">
+    <header className="flex shrink-0 items-center justify-between gap-2 border-b-[3px] border-[var(--border)] bg-[var(--surface)] px-3 py-2 sm:gap-3 lg:px-6 lg:py-3">
       <div className="flex min-w-0 items-center gap-3">
         <button
           onClick={toggleSidebar}
@@ -30,7 +30,7 @@ const ChatHeader = ({
         </div>
 
         <div className="min-w-0">
-          <h2 className="truncate text-xl font-extrabold leading-tight sm:text-2xl">AI Assistant</h2>
+          <h2 className="truncate text-lg font-extrabold leading-tight sm:text-2xl">AI Chat</h2>
         </div>
       </div>
 
@@ -49,7 +49,7 @@ const ChatHeader = ({
           {hasMessages ? <Trash2 className="h-5 w-5" strokeWidth={3} /> : <RotateCcw className="h-5 w-5" strokeWidth={3} />}
         </button>
 
-        <button onClick={toggleTheme} className="brutal-icon-button hidden sm:inline-flex" aria-label="Toggle theme" title="Theme">
+        <button onClick={toggleTheme} className="brutal-icon-button" aria-label="Toggle theme" title="Theme">
           {theme === 'dark' ? <Sun className="h-5 w-5" strokeWidth={3} /> : <Moon className="h-5 w-5" strokeWidth={3} />}
         </button>
 

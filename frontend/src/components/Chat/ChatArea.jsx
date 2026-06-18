@@ -12,7 +12,7 @@ const ChatArea = ({ messages, isTyping, onSuggestionClick }) => {
   }, [messages, isTyping]);
 
   return (
-    <section className="custom-scrollbar min-h-0 flex-1 overflow-y-auto bg-background px-3 py-5 sm:px-6 lg:px-8">
+    <section className="custom-scrollbar min-h-0 flex-1 overflow-y-auto bg-background px-2 py-4 sm:px-6 sm:py-5 lg:px-8">
       <div className="mx-auto flex min-h-full max-w-5xl flex-col gap-6">
         <AnimatePresence mode="popLayout">
           {messages.length === 0 ? (

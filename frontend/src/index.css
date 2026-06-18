@@ -104,8 +104,8 @@
 
   .brutal-icon-button {
     display: inline-flex;
-    height: 46px;
-    width: 46px;
+    min-height: 40px;
+    min-width: 40px;
     align-items: center;
     justify-content: center;
     background: var(--surface);

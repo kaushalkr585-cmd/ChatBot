@@ -171,7 +171,7 @@ function App() {
     <div className="min-h-screen overflow-hidden bg-background text-foreground selection:bg-yellow selection:text-black">
       <Background />
 
-      <div className="flex h-screen gap-4 p-3 lg:gap-6 lg:p-6">
+      <div className="flex h-[100dvh] gap-0 p-0 lg:gap-6 lg:p-6">
         <Sidebar
           isOpen={isSidebarOpen}
           currentChatId={currentChatId}
@@ -190,7 +190,7 @@ function App() {
           onSettingsClick={() => setIsSettingsOpen(true)}
         />
 
-        <main className="brutal-panel relative z-10 flex min-w-0 flex-1 flex-col overflow-hidden bg-[var(--surface)]">
+        <main className="relative z-10 flex min-w-0 flex-1 flex-col overflow-hidden bg-[var(--surface)] lg:border-[3px] lg:border-[var(--border)] lg:rounded-[18px] lg:shadow-[6px_6px_0_var(--shadow-color)]">
           <ChatHeader
             theme={theme}
             toggleTheme={toggleTheme}

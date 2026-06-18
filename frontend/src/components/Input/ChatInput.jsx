@@ -99,7 +99,7 @@ const ChatInput = ({ onSend, isTyping }) => {
   const canSend = (text.trim().length > 0 || imagePreview) && !isTyping;
 
   return (
-    <footer className="relative shrink-0 border-t-[3px] border-[var(--border)] bg-[var(--surface)] px-3 py-3 sm:px-5 sm:py-4">
+    <footer className="relative shrink-0 border-t-[3px] border-[var(--border)] bg-[var(--surface)] px-2 pt-2 pb-[calc(8px+env(safe-area-inset-bottom))] sm:px-5 sm:py-4">
       <div className="mx-auto max-w-5xl">
         <AnimatePresence>
           {showEmojiPicker && (
@@ -139,8 +139,8 @@ const ChatInput = ({ onSend, isTyping }) => {
           )}
         </AnimatePresence>
 
-        <div className="brutal-input grid grid-cols-[auto_auto_minmax(0,1fr)_auto_auto] items-end gap-2 bg-[var(--surface)] p-2 sm:gap-3 sm:p-3">
-          <label className="brutal-icon-button h-12 w-12 bg-[var(--surface)] shadow-brutalSm" title="Add image" aria-label="Add image">
+        <div className="brutal-input flex items-end gap-1.5 bg-[var(--surface)] p-1.5 sm:gap-3 sm:p-3">
+          <label className="brutal-icon-button h-10 w-10 shrink-0 bg-[var(--surface)] shadow-brutalSm sm:h-12 sm:w-12" title="Add image" aria-label="Add image">
             <ImageIcon className="h-5 w-5" strokeWidth={3} />
             <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} />
           </label>
@@ -148,7 +148,7 @@ const ChatInput = ({ onSend, isTyping }) => {
           <button
             type="button"
             onClick={() => setShowEmojiPicker((value) => !value)}
-            className="brutal-icon-button h-12 w-12 bg-[var(--surface)] shadow-brutalSm"
+            className="brutal-icon-button h-10 w-10 shrink-0 bg-[var(--surface)] shadow-brutalSm sm:h-12 sm:w-12"
             title="Insert emoji"
             aria-label="Insert emoji"
           >
@@ -160,15 +160,15 @@ const ChatInput = ({ onSend, isTyping }) => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={isRecording ? 'Listening...' : 'Message ChatBot'}
-            className="min-h-[48px] w-full resize-none rounded-[14px] border-[3px] border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-base font-bold leading-relaxed text-[var(--foreground)] shadow-brutalSm outline-none placeholder:text-[var(--muted)]"
+            placeholder={isRecording ? 'Listening...' : 'Message...'}
+            className="flex-1 min-h-[40px] max-h-32 resize-none rounded-[14px] border-[3px] border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-sm font-bold leading-relaxed text-[var(--foreground)] shadow-brutalSm outline-none placeholder:text-[var(--muted)] hide-scrollbar sm:min-h-[48px] sm:px-4 sm:text-base"
             rows={1}
           />
 
           <button
             type="button"
             onClick={toggleRecording}
-            className={`brutal-icon-button h-12 w-12 shadow-brutalSm ${isRecording ? 'bg-red' : 'bg-[var(--surface)]'}`}
+            className={`brutal-icon-button h-10 w-10 shrink-0 shadow-brutalSm sm:h-12 sm:w-12 ${isRecording ? 'bg-red' : 'bg-[var(--surface)]'}`}
             aria-label="Voice input"
             title="Voice input"
           >
@@ -179,7 +179,7 @@ const ChatInput = ({ onSend, isTyping }) => {
             type="button"
             onClick={handleSend}
             disabled={!canSend}
-            className="brutal-icon-button h-12 w-12 bg-yellow text-black shadow-brutalSm disabled:cursor-not-allowed disabled:bg-[var(--surface)] disabled:opacity-45"
+            className="brutal-icon-button h-10 w-10 shrink-0 bg-yellow text-black shadow-brutalSm disabled:cursor-not-allowed disabled:bg-[var(--surface)] disabled:opacity-45 sm:h-12 sm:w-12"
             aria-label="Send message"
             title="Send"
           >

@@ -24,17 +24,17 @@ const suggestions = [
 
 const SuggestionCards = ({ onSuggestionClick }) => {
   return (
-    <div className="grid w-full gap-3 sm:grid-cols-3">
+    <div className="grid w-full gap-2 sm:gap-3 sm:grid-cols-3">
       {suggestions.map(({ title, prompt, icon: Icon, accent }) => (
         <button
           key={title}
           onClick={() => onSuggestionClick(prompt)}
-          className="brutal-press flex min-h-[118px] flex-col justify-between rounded-[16px] border-[3px] border-[var(--border)] bg-[var(--surface)] p-4 text-left shadow-brutal transition-all duration-200 hover:bg-yellow hover:text-black"
+          className="brutal-press flex flex-row items-center gap-3 rounded-[16px] border-[3px] border-[var(--border)] bg-[var(--surface)] p-3 text-left shadow-brutal transition-all duration-200 hover:bg-yellow hover:text-black sm:min-h-[118px] sm:flex-col sm:justify-between sm:p-4"
         >
-          <span className={`flex h-11 w-11 items-center justify-center rounded-xl border-[3px] border-[var(--border)] ${accent}`}>
+          <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-[3px] border-[var(--border)] sm:h-11 sm:w-11 ${accent}`}>
             <Icon className="h-5 w-5" strokeWidth={3} />
           </span>
-          <span className="mt-4 text-lg font-extrabold leading-tight">{title}</span>
+          <span className="text-base font-extrabold leading-tight sm:mt-4 sm:text-lg">{title}</span>
         </button>
       ))}
     </div>
