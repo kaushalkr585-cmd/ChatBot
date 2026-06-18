@@ -1,9 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Image as ImageIcon, Mic, X, Loader2, Smile } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Image as ImageIcon, Loader2, Mic, Send, Smile, X } from 'lucide-react';
 import EmojiPicker from 'emoji-picker-react';
+import { useSettings } from '../../Context/SettingsContext';
 
 const ChatInput = ({ onSend, isTyping }) => {
+  const { theme } = useSettings();
   const [text, setText] = useState('');
   const [isRecording, setIsRecording] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
@@ -11,7 +13,6 @@ const ChatInput = ({ onSend, isTyping }) => {
   const textareaRef = useRef(null);
   const recognitionRef = useRef(null);
 
-  // Initialize Web Speech API
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechRecognition) {
@@ -22,7 +23,7 @@ const ChatInput = ({ onSend, isTyping }) => {
 
       recognition.onresult = (event) => {
         let currentTranscript = '';
-        for (let i = 0; i < event.results.length; i++) {
+        for (let i = 0; i < event.results.length; i += 1) {
           currentTranscript += event.results[i][0].transcript;
         }
         setText(currentTranscript);
@@ -30,7 +31,7 @@ const ChatInput = ({ onSend, isTyping }) => {
 
       recognition.onerror = (event) => {
         if (event.error !== 'no-speech') {
-          console.warn("Speech recognition error:", event.error);
+          console.warn('Speech recognition error:', event.error);
         }
         setIsRecording(false);
       };
@@ -43,19 +44,19 @@ const ChatInput = ({ onSend, isTyping }) => {
     }
   }, []);
 
-  // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 150)}px`;
+      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 132)}px`;
     }
   }, [text]);
 
   const handleSend = () => {
-    if (!text.trim() && !imagePreview) return;
+    if ((!text.trim() && !imagePreview) || isTyping) return;
     onSend(text, imagePreview);
     setText('');
     setImagePreview(null);
+    setShowEmojiPicker(false);
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
     }
@@ -81,7 +82,7 @@ const ChatInput = ({ onSend, isTyping }) => {
 
   const toggleRecording = () => {
     if (!recognitionRef.current) {
-      alert("Voice search is not supported in this browser.");
+      alert('Voice search is not supported in this browser.');
       return;
     }
 
@@ -95,135 +96,98 @@ const ChatInput = ({ onSend, isTyping }) => {
     }
   };
 
+  const canSend = (text.trim().length > 0 || imagePreview) && !isTyping;
+
   return (
-    <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 pb-6 md:pb-8 flex justify-center bg-gradient-to-t from-background via-background to-transparent z-30 pointer-events-none">
-      <div className="w-full max-w-4xl relative pointer-events-auto">
-        
-        {/* Emoji Picker Popover */}
+    <footer className="relative shrink-0 border-t-[3px] border-[var(--border)] bg-[var(--surface)] px-3 py-3 sm:px-5 sm:py-4">
+      <div className="mx-auto max-w-5xl">
         <AnimatePresence>
           {showEmojiPicker && (
             <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              className="absolute bottom-20 left-4 z-50 shadow-2xl"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              className="absolute bottom-[calc(100%-4px)] left-4 z-30 overflow-hidden rounded-[18px] border-[3px] border-[var(--border)] bg-[var(--surface)] shadow-brutal"
             >
               <EmojiPicker
-                theme="auto"
+                theme={theme === 'dark' ? 'dark' : 'light'}
                 onEmojiClick={(emojiData) => {
-                  setText(prev => prev + emojiData.emoji);
+                  setText((prev) => prev + emojiData.emoji);
                 }}
               />
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Multimodal Previews */}
         <AnimatePresence>
           {imagePreview && (
             <motion.div
-              initial={{ opacity: 0, y: 10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="absolute -top-20 left-4 glassmorphism p-2 rounded-xl group"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              className="mb-3 inline-flex items-center gap-3 rounded-[16px] border-[3px] border-black bg-yellow p-2 shadow-brutal"
             >
-              <img src={imagePreview} alt="Preview" className="h-16 w-16 object-cover rounded-lg" />
+              <img src={imagePreview} alt="Preview" className="h-16 w-16 rounded-xl border-[3px] border-black object-cover" />
               <button
                 onClick={() => setImagePreview(null)}
-                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                className="brutal-icon-button h-10 w-10 bg-white shadow-brutalSm"
+                aria-label="Remove image"
               >
-                <X className="w-3 h-3" />
+                <X className="h-5 w-5" strokeWidth={3} />
               </button>
             </motion.div>
           )}
         </AnimatePresence>
 
-        <motion.div
-          animate={isRecording ? { scale: 1.01, boxShadow: '0 0 20px rgba(66, 133, 244, 0.15)' } : {}}
-          className="bg-[#f0f4f9] dark:bg-[#1e1f20] rounded-[32px] p-4 flex flex-col gap-2 shadow-lg transition-colors duration-300 w-full"
-        >
-          {/* Text Area Row */}
-          <div className="flex-1 w-full px-2">
-            <textarea
-              ref={textareaRef}
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder={isRecording ? "Listening..." : "Ask ChatBot..."}
-              className="w-full bg-transparent resize-none outline-none custom-scrollbar text-[16px] placeholder:text-foreground/40 leading-relaxed text-foreground min-h-[44px]"
-              rows={1}
-            />
-          </div>
+        <div className="brutal-input grid grid-cols-[auto_auto_minmax(0,1fr)_auto_auto] items-end gap-2 bg-[var(--surface)] p-2 sm:gap-3 sm:p-3">
+          <label className="brutal-icon-button h-12 w-12 bg-[var(--surface)] shadow-brutalSm" title="Add image" aria-label="Add image">
+            <ImageIcon className="h-5 w-5" strokeWidth={3} />
+            <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} />
+          </label>
 
-          {/* Action Tools Row */}
-          <div className="flex justify-between items-center w-full px-1">
-            {/* Left Tools */}
-            <div className="flex items-center gap-1">
-              <button
-                 type="button"
-                 title="Add image"
-                 className="p-2.5 bg-transparent hover:bg-white/5 rounded-full cursor-pointer transition-colors text-foreground/50 hover:text-foreground/90"
-              >
-                <label className="cursor-pointer flex items-center justify-center w-full h-full">
-                   <ImageIcon className="w-5 h-5" />
-                   <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} />
-                </label>
-              </button>
-              <button
-                 type="button"
-                 title="Insert emoji"
-                 onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-                 className="p-2.5 bg-transparent hover:bg-white/5 rounded-full transition-colors text-foreground/50 hover:text-foreground/90"
-              >
-                <Smile className="w-5 h-5" />
-              </button>
-            </div>
+          <button
+            type="button"
+            onClick={() => setShowEmojiPicker((value) => !value)}
+            className="brutal-icon-button h-12 w-12 bg-[var(--surface)] shadow-brutalSm"
+            title="Insert emoji"
+            aria-label="Insert emoji"
+          >
+            <Smile className="h-5 w-5" strokeWidth={3} />
+          </button>
 
-            {/* Right Tools */}
-            <div className="flex items-center gap-1">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={toggleRecording}
-                className={`p-2.5 rounded-full transition-colors flex items-center justify-center ${
-                  isRecording 
-                    ? 'bg-red-500/20 text-red-500' 
-                    : 'bg-transparent hover:bg-white/5 text-foreground/50 hover:text-foreground/90'
-                }`}
-              >
-                {isRecording ? (
-                   <span className="flex gap-1 items-center px-1">
-                     <span className="w-1.5 h-3 bg-red-500 rounded-full animate-bounce"></span>
-                     <span className="w-1.5 h-4 bg-red-500 rounded-full animate-bounce delay-75"></span>
-                     <span className="w-1.5 h-2 bg-red-500 rounded-full animate-bounce delay-150"></span>
-                   </span>
-                ) : (
-                  <Mic className="w-5 h-5" />
-                )}
-              </motion.button>
+          <textarea
+            ref={textareaRef}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder={isRecording ? 'Listening...' : 'Message ChatBot'}
+            className="min-h-[48px] w-full resize-none rounded-[14px] border-[3px] border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-base font-bold leading-relaxed text-[var(--foreground)] shadow-brutalSm outline-none placeholder:text-[var(--muted)]"
+            rows={1}
+          />
 
-              {/* Only show Send if there is content */}
-              {(text.length > 0 || imagePreview) && (
-                <motion.button
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleSend}
-                  disabled={isTyping}
-                  className="p-3 ml-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_4px_14px_0_rgba(66,133,244,0.39)] hover:shadow-[0_6px_20px_rgba(66,133,244,0.23)] transition-all"
-                >
-                  {isTyping ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
-                </motion.button>
-              )}
-            </div>
-          </div>
-        </motion.div>
-        <div className="text-center mt-3 text-[11px] text-foreground/40 font-medium tracking-wide">
-          Developed by Kaushal Kumar
+          <button
+            type="button"
+            onClick={toggleRecording}
+            className={`brutal-icon-button h-12 w-12 shadow-brutalSm ${isRecording ? 'bg-red' : 'bg-[var(--surface)]'}`}
+            aria-label="Voice input"
+            title="Voice input"
+          >
+            <Mic className="h-5 w-5" strokeWidth={3} />
+          </button>
+
+          <button
+            type="button"
+            onClick={handleSend}
+            disabled={!canSend}
+            className="brutal-icon-button h-12 w-12 bg-yellow text-black shadow-brutalSm disabled:cursor-not-allowed disabled:bg-[var(--surface)] disabled:opacity-45"
+            aria-label="Send message"
+            title="Send"
+          >
+            {isTyping ? <Loader2 className="h-5 w-5 animate-spin" strokeWidth={3} /> : <Send className="h-5 w-5" strokeWidth={3} />}
+          </button>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

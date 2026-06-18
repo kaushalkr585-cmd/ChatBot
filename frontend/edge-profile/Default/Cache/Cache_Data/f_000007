@@ -1,0 +1,218 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/Chat/ChatHeader.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=b3e58a62"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+var _s = $RefreshSig$();
+import __vite__cjsImport1_react from "/node_modules/.vite/deps/react.js?v=b3e58a62"; const React = __vite__cjsImport1_react.__esModule ? __vite__cjsImport1_react.default : __vite__cjsImport1_react;
+import { Bot, Menu, Moon, RotateCcw, Settings, Sun, Trash2, User, LogIn } from "/node_modules/.vite/deps/lucide-react.js?v=b3e58a62";
+import { useAuth } from "/src/Context/AuthContext.jsx";
+const ChatHeader = ({
+  toggleSidebar,
+  onSettingsClick,
+  onClearChat,
+  onAuthClick,
+  onProfileClick,
+  toggleTheme,
+  theme,
+  hasMessages
+}) => {
+  _s();
+  const { user } = useAuth();
+  return /* @__PURE__ */ jsxDEV("header", { className: "flex shrink-0 items-center justify-between gap-3 border-b-[3px] border-black bg-white px-4 py-3 lg:px-6", children: [
+    /* @__PURE__ */ jsxDEV("div", { className: "flex min-w-0 items-center gap-3", children: [
+      /* @__PURE__ */ jsxDEV(
+        "button",
+        {
+          onClick: toggleSidebar,
+          className: "brutal-icon-button h-11 w-11 lg:hidden",
+          "aria-label": "Open sidebar",
+          children: /* @__PURE__ */ jsxDEV(Menu, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+            fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+            lineNumber: 25,
+            columnNumber: 11
+          }, this)
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+          lineNumber: 20,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV("div", { className: "flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border-[3px] border-black bg-yellow shadow-brutalSm", children: /* @__PURE__ */ jsxDEV(Bot, { className: "h-7 w-7", strokeWidth: 3 }, void 0, false, {
+        fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+        lineNumber: 29,
+        columnNumber: 11
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+        lineNumber: 28,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "min-w-0", children: [
+        /* @__PURE__ */ jsxDEV("h2", { className: "truncate text-xl font-extrabold leading-tight sm:text-2xl", children: "AI Assistant" }, void 0, false, {
+          fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+          lineNumber: 33,
+          columnNumber: 11
+        }, this),
+        /* @__PURE__ */ jsxDEV("div", { className: "mt-1 flex items-center gap-2 text-sm font-bold text-black/65", children: [
+          /* @__PURE__ */ jsxDEV("span", { className: "h-3 w-3 rounded-full border-[3px] border-black bg-green" }, void 0, false, {
+            fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+            lineNumber: 35,
+            columnNumber: 13
+          }, this),
+          "Ready to help"
+        ] }, void 0, true, {
+          fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+          lineNumber: 34,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+        lineNumber: 32,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+      lineNumber: 19,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "flex shrink-0 items-center gap-2", children: [
+      /* @__PURE__ */ jsxDEV("button", { onClick: onSettingsClick, className: "brutal-icon-button", "aria-label": "Settings", title: "Settings", children: /* @__PURE__ */ jsxDEV(Settings, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+        fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+        lineNumber: 43,
+        columnNumber: 11
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+        lineNumber: 42,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(
+        "button",
+        {
+          onClick: onClearChat,
+          disabled: !hasMessages,
+          className: "brutal-icon-button disabled:cursor-not-allowed disabled:opacity-45",
+          "aria-label": "Clear chat",
+          title: "Clear chat",
+          children: hasMessages ? /* @__PURE__ */ jsxDEV(Trash2, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+            fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+            lineNumber: 53,
+            columnNumber: 26
+          }, this) : /* @__PURE__ */ jsxDEV(RotateCcw, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+            fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+            lineNumber: 53,
+            columnNumber: 75
+          }, this)
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+          lineNumber: 46,
+          columnNumber: 9
+        },
+        this
+      ),
+      /* @__PURE__ */ jsxDEV("button", { onClick: toggleTheme, className: "brutal-icon-button hidden sm:inline-flex", "aria-label": "Toggle theme", title: "Theme", children: theme === "dark" ? /* @__PURE__ */ jsxDEV(Sun, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+        fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+        lineNumber: 57,
+        columnNumber: 31
+      }, this) : /* @__PURE__ */ jsxDEV(Moon, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+        fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+        lineNumber: 57,
+        columnNumber: 77
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+        lineNumber: 56,
+        columnNumber: 9
+      }, this),
+      user ? /* @__PURE__ */ jsxDEV(
+        "button",
+        {
+          onClick: onProfileClick,
+          className: "brutal-icon-button overflow-hidden bg-green",
+          "aria-label": "Profile",
+          title: user.name,
+          children: user.profilePicture ? /* @__PURE__ */ jsxDEV("img", { src: user.profilePicture, alt: user.name, className: "h-full w-full object-cover" }, void 0, false, {
+            fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+            lineNumber: 68,
+            columnNumber: 11
+          }, this) : /* @__PURE__ */ jsxDEV(User, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+            fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+            lineNumber: 70,
+            columnNumber: 11
+          }, this)
+        },
+        void 0,
+        false,
+        {
+          fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+          lineNumber: 61,
+          columnNumber: 9
+        },
+        this
+      ) : /* @__PURE__ */ jsxDEV(
+        "button",
+        {
+          onClick: onAuthClick,
+          className: "brutal-button hidden items-center gap-2 bg-yellow px-4 py-2.5 text-sm font-extrabold sm:flex",
+          children: [
+            /* @__PURE__ */ jsxDEV(LogIn, { className: "h-4 w-4", strokeWidth: 3 }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+              lineNumber: 78,
+              columnNumber: 13
+            }, this),
+            "Sign In"
+          ]
+        },
+        void 0,
+        true,
+        {
+          fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+          lineNumber: 74,
+          columnNumber: 9
+        },
+        this
+      )
+    ] }, void 0, true, {
+      fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+      lineNumber: 41,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx",
+    lineNumber: 18,
+    columnNumber: 5
+  }, this);
+};
+_s(ChatHeader, "9ep4vdl3mBfipxjmc+tQCDhw6Ik=", false, function() {
+  return [useAuth];
+});
+_c = ChatHeader;
+export default ChatHeader;
+var _c;
+$RefreshReg$(_c, "ChatHeader");
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) {
+  return RefreshRuntime.register(type, "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Chat/ChatHeader.jsx " + id);
+}
+function $RefreshSig$() {
+  return RefreshRuntime.createSignatureFunctionForTransform();
+}
+
+//# sourceMappingURL=data:application/json;base64,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QUFBLFVBRVhELGVBQUtFLGlCQUNKLHVCQUFDLFNBQUksS0FBS0YsS0FBS0UsZ0JBQWdCLEtBQUtGLEtBQUtDLE1BQU0sV0FBVSxnQ0FBekQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxpQkFBcUYsSUFFckYsdUJBQUMsUUFBSyxXQUFVLFdBQVUsYUFBYSxLQUF2QztBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQUF5QztBQUFBO0FBQUEsUUFUN0M7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLE1BV0EsSUFFQTtBQUFBLFFBQUM7QUFBQTtBQUFBLFVBQ0MsU0FBU1A7QUFBQUEsVUFDVCxXQUFVO0FBQUEsVUFFVjtBQUFBLG1DQUFDLFNBQU0sV0FBVSxXQUFVLGFBQWEsS0FBeEM7QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFBMEM7QUFBQTtBQUFBO0FBQUE7QUFBQSxRQUo1QztBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsTUFNQTtBQUFBLFNBdkNKO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0F5Q0E7QUFBQSxPQWhFRjtBQUFBO0FBQUE7QUFBQTtBQUFBLFNBaUVBO0FBRUo7QUFBRUssR0FoRklULFlBQVU7QUFBQSxVQVVHRCxPQUFPO0FBQUE7QUFBQSxLQVZwQkM7QUFrRk4sZUFBZUE7QUFBVyxJQUFBYTtBQUFBLGFBQUFBLElBQUEiLCJuYW1lcyI6WyJSZWFjdCIsIkJvdCIsIk1lbnUiLCJNb29uIiwiUm90YXRlQ2N3IiwiU2V0dGluZ3MiLCJTdW4iLCJUcmFzaDIiLCJVc2VyIiwiTG9nSW4iLCJ1c2VBdXRoIiwiQ2hhdEhlYWRlciIsInRvZ2dsZVNpZGViYXIiLCJvblNldHRpbmdzQ2xpY2siLCJvbkNsZWFyQ2hhdCIsIm9uQXV0aENsaWNrIiwib25Qcm9maWxlQ2xpY2siLCJ0b2dnbGVUaGVtZSIsInRoZW1lIiwiaGFzTWVzc2FnZXMiLCJfcyIsInVzZXIiLCJuYW1lIiwicHJvZmlsZVBpY3R1cmUiLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJDaGF0SGVhZGVyLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IHsgQm90LCBNZW51LCBNb29uLCBSb3RhdGVDY3csIFNldHRpbmdzLCBTdW4sIFRyYXNoMiwgVXNlciwgTG9nSW4gfSBmcm9tICdsdWNpZGUtcmVhY3QnO1xuaW1wb3J0IHsgdXNlQXV0aCB9IGZyb20gJy4uLy4uL0NvbnRleHQvQXV0aENvbnRleHQnO1xuXG5jb25zdCBDaGF0SGVhZGVyID0gKHtcbiAgdG9nZ2xlU2lkZWJhcixcbiAgb25TZXR0aW5nc0NsaWNrLFxuICBvbkNsZWFyQ2hhdCxcbiAgb25BdXRoQ2xpY2ssXG4gIG9uUHJvZmlsZUNsaWNrLFxuICB0b2dnbGVUaGVtZSxcbiAgdGhlbWUsXG4gIGhhc01lc3NhZ2VzLFxufSkgPT4ge1xuICBjb25zdCB7IHVzZXIgfSA9IHVzZUF1dGgoKTtcblxuICByZXR1cm4gKFxuICAgIDxoZWFkZXIgY2xhc3NOYW1lPVwiZmxleCBzaHJpbmstMCBpdGVtcy1jZW50ZXIganVzdGlmeS1iZXR3ZWVuIGdhcC0zIGJvcmRlci1iLVszcHhdIGJvcmRlci1ibGFjayBiZy13aGl0ZSBweC00IHB5LTMgbGc6cHgtNlwiPlxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IG1pbi13LTAgaXRlbXMtY2VudGVyIGdhcC0zXCI+XG4gICAgICAgIDxidXR0b25cbiAgICAgICAgICBvbkNsaWNrPXt0b2dnbGVTaWRlYmFyfVxuICAgICAgICAgIGNsYXNzTmFtZT1cImJydXRhbC1pY29uLWJ1dHRvbiBoLTExIHctMTEgbGc6aGlkZGVuXCJcbiAgICAgICAgICBhcmlhLWxhYmVsPVwiT3BlbiBzaWRlYmFyXCJcbiAgICAgICAgPlxuICAgICAgICAgIDxNZW51IGNsYXNzTmFtZT1cImgtNSB3LTVcIiBzdHJva2VXaWR0aD17M30gLz5cbiAgICAgICAgPC9idXR0b24+XG5cbiAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGgtMTIgdy0xMiBzaHJpbmstMCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgcm91bmRlZC0yeGwgYm9yZGVyLVszcHhdIGJvcmRlci1ibGFjayBiZy15ZWxsb3cgc2hhZG93LWJydXRhbFNtXCI+XG4gICAgICAgICAgPEJvdCBjbGFzc05hbWU9XCJoLTcgdy03XCIgc3Ryb2tlV2lkdGg9ezN9IC8+XG4gICAgICAgIDwvZGl2PlxuXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibWluLXctMFwiPlxuICAgICAgICAgIDxoMiBjbGFzc05hbWU9XCJ0cnVuY2F0ZSB0ZXh0LXhsIGZvbnQtZXh0cmFib2xkIGxlYWRpbmctdGlnaHQgc206dGV4dC0yeGxcIj5BSSBBc3Npc3RhbnQ8L2gyPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibXQtMSBmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMiB0ZXh0LXNtIGZvbnQtYm9sZCB0ZXh0LWJsYWNrLzY1XCI+XG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJoLTMgdy0zIHJvdW5kZWQtZnVsbCBib3JkZXItWzNweF0gYm9yZGVyLWJsYWNrIGJnLWdyZWVuXCIgLz5cbiAgICAgICAgICAgIFJlYWR5IHRvIGhlbHBcbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC9kaXY+XG4gICAgICA8L2Rpdj5cblxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IHNocmluay0wIGl0ZW1zLWNlbnRlciBnYXAtMlwiPlxuICAgICAgICA8YnV0dG9uIG9uQ2xpY2s9e29uU2V0dGluZ3NDbGlja30gY2xhc3NOYW1lPVwiYnJ1dGFsLWljb24tYnV0dG9uXCIgYXJpYS1sYWJlbD1cIlNldHRpbmdzXCIgdGl0bGU9XCJTZXR0aW5nc1wiPlxuICAgICAgICAgIDxTZXR0aW5ncyBjbGFzc05hbWU9XCJoLTUgdy01XCIgc3Ryb2tlV2lkdGg9ezN9IC8+XG4gICAgICAgIDwvYnV0dG9uPlxuXG4gICAgICAgIDxidXR0b25cbiAgICAgICAgICBvbkNsaWNrPXtvbkNsZWFyQ2hhdH1cbiAgICAgICAgICBkaXNhYmxlZD17IWhhc01lc3NhZ2VzfVxuICAgICAgICAgIGNsYXNzTmFtZT1cImJydXRhbC1pY29uLWJ1dHRvbiBkaXNhYmxlZDpjdXJzb3Itbm90LWFsbG93ZWQgZGlzYWJsZWQ6b3BhY2l0eS00NVwiXG4gICAgICAgICAgYXJpYS1sYWJlbD1cIkNsZWFyIGNoYXRcIlxuICAgICAgICAgIHRpdGxlPVwiQ2xlYXIgY2hhdFwiXG4gICAgICAgID5cbiAgICAgICAgICB7aGFzTWVzc2FnZXMgPyA8VHJhc2gyIGNsYXNzTmFtZT1cImgtNSB3LTVcIiBzdHJva2VXaWR0aD17M30gLz4gOiA8Um90YXRlQ2N3IGNsYXNzTmFtZT1cImgtNSB3LTVcIiBzdHJva2VXaWR0aD17M30gLz59XG4gICAgICAgIDwvYnV0dG9uPlxuXG4gICAgICAgIDxidXR0b24gb25DbGljaz17dG9nZ2xlVGhlbWV9IGNsYXNzTmFtZT1cImJydXRhbC1pY29uLWJ1dHRvbiBoaWRkZW4gc206aW5saW5lLWZsZXhcIiBhcmlhLWxhYmVsPVwiVG9nZ2xlIHRoZW1lXCIgdGl0bGU9XCJUaGVtZVwiPlxuICAgICAgICAgIHt0aGVtZSA9PT0gJ2RhcmsnID8gPFN1biBjbGFzc05hbWU9XCJoLTUgdy01XCIgc3Ryb2tlV2lkdGg9ezN9IC8+IDogPE1vb24gY2xhc3NOYW1lPVwiaC01IHctNVwiIHN0cm9rZVdpZHRoPXszfSAvPn1cbiAgICAgICAgPC9idXR0b24+XG5cbiAgICAgICAge3VzZXIgPyAoXG4gICAgICAgICAgPGJ1dHRvblxuICAgICAgICAgICAgb25DbGljaz17b25Qcm9maWxlQ2xpY2t9XG4gICAgICAgICAgICBjbGFzc05hbWU9XCJicnV0YWwtaWNvbi1idXR0b24gb3ZlcmZsb3ctaGlkZGVuIGJnLWdyZWVuXCJcbiAgICAgICAgICAgIGFyaWEtbGFiZWw9XCJQcm9maWxlXCJcbiAgICAgICAgICAgIHRpdGxlPXt1c2VyLm5hbWV9XG4gICAgICAgICAgPlxuICAgICAgICAgICAge3VzZXIucHJvZmlsZVBpY3R1cmUgPyAoXG4gICAgICAgICAgICAgIDxpbWcgc3JjPXt1c2VyLnByb2ZpbGVQaWN0dXJlfSBhbHQ9e3VzZXIubmFtZX0gY2xhc3NOYW1lPVwiaC1mdWxsIHctZnVsbCBvYmplY3QtY292ZXJcIiAvPlxuICAgICAgICAgICAgKSA6IChcbiAgICAgICAgICAgICAgPFVzZXIgY2xhc3NOYW1lPVwiaC01IHctNVwiIHN0cm9rZVdpZHRoPXszfSAvPlxuICAgICAgICAgICAgKX1cbiAgICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgKSA6IChcbiAgICAgICAgICA8YnV0dG9uXG4gICAgICAgICAgICBvbkNsaWNrPXtvbkF1dGhDbGlja31cbiAgICAgICAgICAgIGNsYXNzTmFtZT1cImJydXRhbC1idXR0b24gaGlkZGVuIGl0ZW1zLWNlbnRlciBnYXAtMiBiZy15ZWxsb3cgcHgtNCBweS0yLjUgdGV4dC1zbSBmb250LWV4dHJhYm9sZCBzbTpmbGV4XCJcbiAgICAgICAgICA+XG4gICAgICAgICAgICA8TG9nSW4gY2xhc3NOYW1lPVwiaC00IHctNFwiIHN0cm9rZVdpZHRoPXszfSAvPlxuICAgICAgICAgICAgU2lnbiBJblxuICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICApfVxuICAgICAgPC9kaXY+XG4gICAgPC9oZWFkZXI+XG4gICk7XG59O1xuXG5leHBvcnQgZGVmYXVsdCBDaGF0SGVhZGVyO1xuIl0sImZpbGUiOiJDOi9Vc2Vycy9LdXNoYWwvRGVza3RvcC9Qcm9qZWN0cy9DaGF0Qm90L2Zyb250ZW5kL3NyYy9jb21wb25lbnRzL0NoYXQvQ2hhdEhlYWRlci5qc3gifQ==

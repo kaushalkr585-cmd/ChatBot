@@ -1,62 +1,180 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 50%, #fdf5ff 100%);
-    --foreground: #111116;
-    --primary: #ffffff;
-    --secondary: #eef1f6;
-    --accent: #4285f4;
-    --border: #e2e8f0;
-    --glass-bg: rgba(255, 255, 255, 0.6);
+    --background: #f5f5f5;
+    --foreground: #000000;
+    --primary: #ffe600;
+    --secondary: #ffffff;
+    --accent: #1a7fff;
+    --border: #000000;
+    --surface: #ffffff;
+    --surface-alt: #f0f0f0;
+    --green: #7dff00;
+    --red: #ff3b5c;
+    --yellow: #ffe600;
+    --muted: rgba(0, 0, 0, 0.55);
+    --input-bg: #ffffff;
+    --shadow-color: #000000;
   }
 
   .dark {
-    --background: #0B0B0F;
-    --foreground: #f8fafc;
-    --primary: #1E1E24;
-    --secondary: #2A2A35;
-    --accent: #9b72cb;
-    --border: #334155;
-    --glass-bg: rgba(30, 30, 36, 0.6);
+    --background: #0f0f11;
+    --foreground: #f0f0f0;
+    --primary: #ffe600;
+    --secondary: #1c1c1f;
+    --accent: #4da3ff;
+    --border: #3a3a3a;
+    --surface: #1c1c1f;
+    --surface-alt: #27272b;
+    --green: #7dff00;
+    --red: #ff3b5c;
+    --yellow: #ffe600;
+    --muted: rgba(255, 255, 255, 0.55);
+    --input-bg: #1c1c1f;
+    --shadow-color: #000000;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
   }
 
   body {
+    margin: 0;
+    overflow: hidden;
     background: var(--background);
-    background-attachment: fixed;
     color: var(--foreground);
-    @apply antialiased transition-colors duration-500 overflow-hidden;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Pixelify Sans', system-ui, -apple-system, sans-serif;
+    font-weight: 500;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .brutal-panel,
+  .brutal-card {
+    border: 3px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 6px 6px 0 var(--shadow-color);
+  }
+
+  .brutal-button,
+  .brutal-icon-button {
+    border: 3px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 6px 6px 0 var(--shadow-color);
+    color: var(--foreground);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .brutal-button:hover,
+  .brutal-icon-button:hover,
+  .brutal-press:hover {
+    transform: translate(-2px, -2px);
+  }
+
+  .brutal-button:active,
+  .brutal-icon-button:active,
+  .brutal-press:active {
+    box-shadow: none;
+    transform: translate(2px, 2px);
+  }
+
+  .brutal-icon-button {
+    display: inline-flex;
+    height: 46px;
+    width: 46px;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    color: var(--foreground);
+  }
+
+  .brutal-input {
+    border: 3px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+    color: var(--foreground);
+    box-shadow: 6px 6px 0 var(--shadow-color);
+  }
+
+  .brutal-focus:focus {
+    outline: 4px solid #7dff00;
+    outline-offset: 2px;
+  }
+
+  .markdown-body h1,
+  .markdown-body h2,
+  .markdown-body h3 {
+    margin: 0.6rem 0 0.35rem;
+    font-weight: 800;
+  }
+
+  .markdown-body p {
+    margin: 0.45rem 0;
+  }
+
+  .markdown-body ul,
+  .markdown-body ol {
+    margin: 0.45rem 0 0.45rem 1.2rem;
+  }
+
+  .markdown-body pre {
+    margin: 0.75rem 0;
+    overflow-x: auto;
   }
 }
 
 @layer utilities {
-  .glassmorphism {
-    @apply bg-glass-bg backdrop-blur-xl border border-[rgba(255,255,255,0.1)] shadow-[0_8px_32px_0_rgba(0,0,0,0.1)];
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
   }
 
-  .dark .glassmorphism {
-    @apply shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] border-[rgba(255,255,255,0.05)];
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--surface);
+    border-left: 3px solid var(--border);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #ffe600;
+    border: 3px solid var(--border);
+    border-radius: 999px;
   }
 
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-border rounded-full;
+
+  /* Dark mode surface overrides */
+  .dark .surface-white {
+    background-color: var(--surface) !important;
+    color: var(--foreground) !important;
   }
 }

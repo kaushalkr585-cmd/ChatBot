@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Upload, Loader2, User as UserIcon } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Loader2, Upload, User as UserIcon, X } from 'lucide-react';
 import { useAuth } from '../../Context/AuthContext';
 
 const ProfileModal = ({ isOpen, onClose }) => {
@@ -12,15 +12,15 @@ const ProfileModal = ({ isOpen, onClose }) => {
     const file = e.target.files[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        alert("File size must be less than 5MB");
+        alert('File size must be less than 5MB');
         return;
       }
-      
+
       const reader = new FileReader();
       reader.onloadend = async () => {
         setLoading(true);
         try {
-          await updateProfilePic(reader.result); // Save Base64 directly via API
+          await updateProfilePic(reader.result);
         } catch (err) {
           alert(err.message);
         } finally {
@@ -39,52 +39,46 @@ const ProfileModal = ({ isOpen, onClose }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
       >
         <motion.div
-          initial={{ scale: 0.95, opacity: 0, y: 20 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          exit={{ scale: 0.95, opacity: 0, y: 20 }}
-          className="w-full max-w-sm p-6 relative rounded-3xl glassmorphism border border-white/10 shadow-2xl bg-background/80 flex flex-col items-center text-center"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 12 }}
+          className="brutal-card relative flex w-full max-w-sm flex-col items-center bg-[var(--surface)] p-6 text-center"
         >
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-foreground/50 hover:text-foreground"
-          >
-            <X className="w-5 h-5" />
+          <button onClick={onClose} className="brutal-icon-button absolute right-4 top-4 h-10 w-10 shadow-brutalSm" aria-label="Close">
+            <X className="h-5 w-5" strokeWidth={3} />
           </button>
 
-          <h2 className="text-xl font-bold font-outfit mb-6">Profile Picture</h2>
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[var(--muted)]">Profile</p>
+          <h2 className="mt-1 text-3xl font-extrabold">Profile Picture</h2>
 
-          <div className="relative group cursor-pointer mb-6" onClick={() => !loading && fileInputRef.current?.click()}>
-            <div className="w-32 h-32 rounded-full border-4 border-border overflow-hidden bg-secondary flex items-center justify-center relative shadow-inner">
-               {user.profilePicture ? (
-                 <img src={user.profilePicture} alt="Profile" className="w-full h-full object-cover" />
-               ) : (
-                 <UserIcon className="w-12 h-12 text-foreground/30" />
-               )}
-               <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                 <Upload className="w-8 h-8 text-white" />
-               </div>
-            </div>
-            {loading && (
-              <div className="absolute inset-0 rounded-full bg-background/50 flex items-center justify-center">
-                <Loader2 className="w-8 h-8 animate-spin text-accent" />
-              </div>
+          <button
+            type="button"
+            className="brutal-button relative mt-6 flex h-36 w-36 items-center justify-center overflow-hidden rounded-[18px] bg-yellow"
+            onClick={() => !loading && fileInputRef.current?.click()}
+          >
+            {user.profilePicture ? (
+              <img src={user.profilePicture} alt="Profile" className="h-full w-full object-cover" />
+            ) : (
+              <UserIcon className="h-14 w-14" strokeWidth={3} />
             )}
-          </div>
+            <span className="absolute bottom-2 right-2 flex h-11 w-11 items-center justify-center rounded-xl border-[3px] border-black bg-white">
+              {loading ? <Loader2 className="h-5 w-5 animate-spin" strokeWidth={3} /> : <Upload className="h-5 w-5" strokeWidth={3} />}
+            </span>
+          </button>
 
-          <p className="text-lg font-semibold">{user.name}</p>
-          <p className="text-sm text-foreground/50 mb-6">{user.email}</p>
+          <p className="mt-6 text-xl font-extrabold">{user.name}</p>
+          <p className="mt-1 text-sm font-bold text-[var(--muted)]">{user.email}</p>
 
-          <input 
-            type="file" 
-            ref={fileInputRef} 
-            className="hidden" 
-            accept="image/png, image/jpeg, image/jpg, image/webp" 
-            onChange={handleImageChange} 
+          <input
+            type="file"
+            ref={fileInputRef}
+            className="hidden"
+            accept="image/png, image/jpeg, image/jpg, image/webp"
+            onChange={handleImageChange}
           />
-          
         </motion.div>
       </motion.div>
     </AnimatePresence>

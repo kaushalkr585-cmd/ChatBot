@@ -1,0 +1,262 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/Auth/AuthModal.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=b3e58a62"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+var _s = $RefreshSig$();
+import __vite__cjsImport1_react from "/node_modules/.vite/deps/react.js?v=b3e58a62"; const React = __vite__cjsImport1_react.__esModule ? __vite__cjsImport1_react.default : __vite__cjsImport1_react; const useState = __vite__cjsImport1_react["useState"];
+import { AnimatePresence, motion } from "/node_modules/.vite/deps/framer-motion.js?v=b3e58a62";
+import { Loader2, Lock, Mail, User, X } from "/node_modules/.vite/deps/lucide-react.js?v=b3e58a62";
+import { useAuth } from "/src/Context/AuthContext.jsx";
+const AuthModal = ({ isOpen, onClose }) => {
+  _s();
+  const { login, register } = useAuth();
+  const [isLogin, setIsLogin] = useState(true);
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+    try {
+      if (isLogin) {
+        await login(formData.email, formData.password);
+      } else {
+        await register(formData.name, formData.email, formData.password);
+      }
+      onClose();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  if (!isOpen) return null;
+  return /* @__PURE__ */ jsxDEV(AnimatePresence, { children: /* @__PURE__ */ jsxDEV(
+    motion.div,
+    {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      exit: { opacity: 0 },
+      className: "fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4",
+      children: /* @__PURE__ */ jsxDEV(
+        motion.div,
+        {
+          initial: { opacity: 0, y: 18 },
+          animate: { opacity: 1, y: 0 },
+          exit: { opacity: 0, y: 12 },
+          className: "brutal-card relative w-full max-w-md bg-white p-6 sm:p-8",
+          children: [
+            /* @__PURE__ */ jsxDEV("button", { onClick: onClose, className: "brutal-icon-button absolute right-4 top-4 h-10 w-10 shadow-brutalSm", "aria-label": "Close", children: /* @__PURE__ */ jsxDEV(X, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+              lineNumber: 49,
+              columnNumber: 13
+            }, this) }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+              lineNumber: 48,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "text-[11px] font-extrabold uppercase tracking-[0.18em] text-black/55", children: "Account" }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+              lineNumber: 52,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("h2", { className: "mt-1 text-4xl font-extrabold leading-none", children: isLogin ? "Welcome Back" : "Create Account" }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+              lineNumber: 53,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "mt-3 max-w-xs text-sm font-bold text-black/65", children: isLogin ? "Sign in to sync your chat history." : "Sign up to save every conversation." }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+              lineNumber: 54,
+              columnNumber: 11
+            }, this),
+            error && /* @__PURE__ */ jsxDEV("div", { className: "mt-5 rounded-[14px] border-[3px] border-black bg-red p-3 text-sm font-extrabold", children: error }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+              lineNumber: 59,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("form", { onSubmit: handleSubmit, className: "mt-6 space-y-4", children: [
+              !isLogin && /* @__PURE__ */ jsxDEV("div", { className: "relative", children: [
+                /* @__PURE__ */ jsxDEV(User, { className: "pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2", strokeWidth: 3 }, void 0, false, {
+                  fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                  lineNumber: 67,
+                  columnNumber: 17
+                }, this),
+                /* @__PURE__ */ jsxDEV(
+                  "input",
+                  {
+                    type: "text",
+                    required: true,
+                    placeholder: "Full Name",
+                    className: "brutal-input brutal-focus w-full py-3 pl-12 pr-4 text-sm font-bold placeholder:text-black/45",
+                    value: formData.name,
+                    onChange: (e) => setFormData({ ...formData, name: e.target.value })
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                    lineNumber: 68,
+                    columnNumber: 17
+                  },
+                  this
+                )
+              ] }, void 0, true, {
+                fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                lineNumber: 66,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "relative", children: [
+                /* @__PURE__ */ jsxDEV(Mail, { className: "pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2", strokeWidth: 3 }, void 0, false, {
+                  fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                  lineNumber: 80,
+                  columnNumber: 15
+                }, this),
+                /* @__PURE__ */ jsxDEV(
+                  "input",
+                  {
+                    type: "email",
+                    required: true,
+                    placeholder: "Email Address",
+                    className: "brutal-input brutal-focus w-full py-3 pl-12 pr-4 text-sm font-bold placeholder:text-black/45",
+                    value: formData.email,
+                    onChange: (e) => setFormData({ ...formData, email: e.target.value })
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                    lineNumber: 81,
+                    columnNumber: 15
+                  },
+                  this
+                )
+              ] }, void 0, true, {
+                fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                lineNumber: 79,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "relative", children: [
+                /* @__PURE__ */ jsxDEV(Lock, { className: "pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2", strokeWidth: 3 }, void 0, false, {
+                  fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                  lineNumber: 92,
+                  columnNumber: 15
+                }, this),
+                /* @__PURE__ */ jsxDEV(
+                  "input",
+                  {
+                    type: "password",
+                    required: true,
+                    placeholder: "Password",
+                    className: "brutal-input brutal-focus w-full py-3 pl-12 pr-4 text-sm font-bold placeholder:text-black/45",
+                    value: formData.password,
+                    onChange: (e) => setFormData({ ...formData, password: e.target.value })
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                    lineNumber: 93,
+                    columnNumber: 15
+                  },
+                  this
+                )
+              ] }, void 0, true, {
+                fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                lineNumber: 91,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV(
+                "button",
+                {
+                  type: "submit",
+                  disabled: loading,
+                  className: "brutal-button flex w-full items-center justify-center bg-yellow px-5 py-3 text-base font-extrabold disabled:cursor-not-allowed disabled:opacity-55",
+                  children: loading ? /* @__PURE__ */ jsxDEV(Loader2, { className: "h-5 w-5 animate-spin", strokeWidth: 3 }, void 0, false, {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                    lineNumber: 108,
+                    columnNumber: 26
+                  }, this) : isLogin ? "Sign In" : "Sign Up"
+                },
+                void 0,
+                false,
+                {
+                  fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                  lineNumber: 103,
+                  columnNumber: 13
+                },
+                this
+              )
+            ] }, void 0, true, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+              lineNumber: 64,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "mt-6 text-center text-sm font-bold text-black/65", children: [
+              isLogin ? "Don't have an account? " : "Already have an account? ",
+              /* @__PURE__ */ jsxDEV("button", { onClick: () => setIsLogin(!isLogin), className: "font-extrabold underline decoration-[3px] underline-offset-4", children: isLogin ? "Sign up" : "Sign in" }, void 0, false, {
+                fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+                lineNumber: 114,
+                columnNumber: 13
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+              lineNumber: 112,
+              columnNumber: 11
+            }, this)
+          ]
+        },
+        void 0,
+        true,
+        {
+          fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+          lineNumber: 42,
+          columnNumber: 9
+        },
+        this
+      )
+    },
+    void 0,
+    false,
+    {
+      fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+      lineNumber: 36,
+      columnNumber: 7
+    },
+    this
+  ) }, void 0, false, {
+    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx",
+    lineNumber: 35,
+    columnNumber: 5
+  }, this);
+};
+_s(AuthModal, "4+UazlUNlMhH4Q5xvfJ3xoZ5Xi0=", false, function() {
+  return [useAuth];
+});
+_c = AuthModal;
+export default AuthModal;
+var _c;
+$RefreshReg$(_c, "AuthModal");
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) {
+  return RefreshRuntime.register(type, "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/AuthModal.jsx " + id);
+}
+function $RefreshSig$() {
+  return RefreshRuntime.createSignatureFunctionForTransform();
+}
+
+//# sourceMappingURL=data:application/json;base64,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IiwibW90aW9uIiwiTG9hZGVyMiIsIkxvY2siLCJNYWlsIiwiVXNlciIsIlgiLCJ1c2VBdXRoIiwiQXV0aE1vZGFsIiwiaXNPcGVuIiwib25DbG9zZSIsIl9zIiwibG9naW4iLCJyZWdpc3RlciIsImlzTG9naW4iLCJzZXRJc0xvZ2luIiwiZm9ybURhdGEiLCJzZXRGb3JtRGF0YSIsIm5hbWUiLCJlbWFpbCIsInBhc3N3b3JkIiwibG9hZGluZyIsInNldExvYWRpbmciLCJlcnJvciIsInNldEVycm9yIiwiaGFuZGxlU3VibWl0IiwiZSIsInByZXZlbnREZWZhdWx0IiwiZXJyIiwibWVzc2FnZSIsIm9wYWNpdHkiLCJ5IiwidGFyZ2V0IiwidmFsdWUiLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJBdXRoTW9kYWwuanN4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCwgeyB1c2VTdGF0ZSB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IEFuaW1hdGVQcmVzZW5jZSwgbW90aW9uIH0gZnJvbSAnZnJhbWVyLW1vdGlvbic7XG5pbXBvcnQgeyBMb2FkZXIyLCBMb2NrLCBNYWlsLCBVc2VyLCBYIH0gZnJvbSAnbHVjaWRlLXJlYWN0JztcbmltcG9ydCB7IHVzZUF1dGggfSBmcm9tICcuLi8uLi9Db250ZXh0L0F1dGhDb250ZXh0JztcblxuY29uc3QgQXV0aE1vZGFsID0gKHsgaXNPcGVuLCBvbkNsb3NlIH0pID0+IHtcbiAgY29uc3QgeyBsb2dpbiwgcmVnaXN0ZXIgfSA9IHVzZUF1dGgoKTtcbiAgY29uc3QgW2lzTG9naW4sIHNldElzTG9naW5dID0gdXNlU3RhdGUodHJ1ZSk7XG4gIGNvbnN0IFtmb3JtRGF0YSwgc2V0Rm9ybURhdGFdID0gdXNlU3RhdGUoeyBuYW1lOiAnJywgZW1haWw6ICcnLCBwYXNzd29yZDogJycgfSk7XG4gIGNvbnN0IFtsb2FkaW5nLCBzZXRMb2FkaW5nXSA9IHVzZVN0YXRlKGZhbHNlKTtcbiAgY29uc3QgW2Vycm9yLCBzZXRFcnJvcl0gPSB1c2VTdGF0ZSgnJyk7XG5cbiAgY29uc3QgaGFuZGxlU3VibWl0ID0gYXN5bmMgKGUpID0+IHtcbiAgICBlLnByZXZlbnREZWZhdWx0KCk7XG4gICAgc2V0RXJyb3IoJycpO1xuICAgIHNldExvYWRpbmcodHJ1ZSk7XG5cbiAgICB0cnkge1xuICAgICAgaWYgKGlzTG9naW4pIHtcbiAgICAgICAgYXdhaXQgbG9naW4oZm9ybURhdGEuZW1haWwsIGZvcm1EYXRhLnBhc3N3b3JkKTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIGF3YWl0IHJlZ2lzdGVyKGZvcm1EYXRhLm5hbWUsIGZvcm1EYXRhLmVtYWlsLCBmb3JtRGF0YS5wYXNzd29yZCk7XG4gICAgICB9XG4gICAgICBvbkNsb3NlKCk7XG4gICAgfSBjYXRjaCAoZXJyKSB7XG4gICAgICBzZXRFcnJvcihlcnIubWVzc2FnZSk7XG4gICAgfSBmaW5hbGx5IHtcbiAgICAgIHNldExvYWRpbmcoZmFsc2UpO1xuICAgIH1cbiAgfTtcblxuICBpZiAoIWlzT3BlbikgcmV0dXJuIG51bGw7XG5cbiAgcmV0dXJuIChcbiAgICA8QW5pbWF0ZVByZXNlbmNlPlxuICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgaW5pdGlhbD17eyBvcGFjaXR5OiAwIH19XG4gICAgICAgIGFuaW1hdGU9e3sgb3BhY2l0eTogMSB9fVxuICAgICAgICBleGl0PXt7IG9wYWNpdHk6IDAgfX1cbiAgICAgICAgY2xhc3NOYW1lPVwiZml4ZWQgaW5zZXQtMCB6LTUwIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIGJnLWJsYWNrLzU1IHAtNFwiXG4gICAgICA+XG4gICAgICAgIDxtb3Rpb24uZGl2XG4gICAgICAgICAgaW5pdGlhbD17eyBvcGFjaXR5OiAwLCB5OiAxOCB9fVxuICAgICAgICAgIGFuaW1hdGU9e3sgb3BhY2l0eTogMSwgeTogMCB9fVxuICAgICAgICAgIGV4aXQ9e3sgb3BhY2l0eTogMCwgeTogMTIgfX1cbiAgICAgICAgICBjbGFzc05hbWU9XCJicnV0YWwtY2FyZCByZWxhdGl2ZSB3LWZ1bGwgbWF4LXctbWQgYmctd2hpdGUgcC02IHNtOnAtOFwiXG4gICAgICAgID5cbiAgICAgICAgICA8YnV0dG9uIG9uQ2xpY2s9e29uQ2xvc2V9IGNsYXNzTmFtZT1cImJydXRhbC1pY29uLWJ1dHRvbiBhYnNvbHV0ZSByaWdodC00IHRvcC00IGgtMTAgdy0xMCBzaGFkb3ctYnJ1dGFsU21cIiBhcmlhLWxhYmVsPVwiQ2xvc2VcIj5cbiAgICAgICAgICAgIDxYIGNsYXNzTmFtZT1cImgtNSB3LTVcIiBzdHJva2VXaWR0aD17M30gLz5cbiAgICAgICAgICA8L2J1dHRvbj5cblxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRleHQtWzExcHhdIGZvbnQtZXh0cmFib2xkIHVwcGVyY2FzZSB0cmFja2luZy1bMC4xOGVtXSB0ZXh0LWJsYWNrLzU1XCI+QWNjb3VudDwvcD5cbiAgICAgICAgICA8aDIgY2xhc3NOYW1lPVwibXQtMSB0ZXh0LTR4bCBmb250LWV4dHJhYm9sZCBsZWFkaW5nLW5vbmVcIj57aXNMb2dpbiA/ICdXZWxjb21lIEJhY2snIDogJ0NyZWF0ZSBBY2NvdW50J308L2gyPlxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cIm10LTMgbWF4LXcteHMgdGV4dC1zbSBmb250LWJvbGQgdGV4dC1ibGFjay82NVwiPlxuICAgICAgICAgICAge2lzTG9naW4gPyAnU2lnbiBpbiB0byBzeW5jIHlvdXIgY2hhdCBoaXN0b3J5LicgOiAnU2lnbiB1cCB0byBzYXZlIGV2ZXJ5IGNvbnZlcnNhdGlvbi4nfVxuICAgICAgICAgIDwvcD5cblxuICAgICAgICAgIHtlcnJvciAmJiAoXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cIm10LTUgcm91bmRlZC1bMTRweF0gYm9yZGVyLVszcHhdIGJvcmRlci1ibGFjayBiZy1yZWQgcC0zIHRleHQtc20gZm9udC1leHRyYWJvbGRcIj5cbiAgICAgICAgICAgICAge2Vycm9yfVxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgKX1cblxuICAgICAgICAgIDxmb3JtIG9uU3VibWl0PXtoYW5kbGVTdWJtaXR9IGNsYXNzTmFtZT1cIm10LTYgc3BhY2UteS00XCI+XG4gICAgICAgICAgICB7IWlzTG9naW4gJiYgKFxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlbGF0aXZlXCI+XG4gICAgICAgICAgICAgICAgPFVzZXIgY2xhc3NOYW1lPVwicG9pbnRlci1ldmVudHMtbm9uZSBhYnNvbHV0ZSBsZWZ0LTQgdG9wLTEvMiBoLTUgdy01IC10cmFuc2xhdGUteS0xLzJcIiBzdHJva2VXaWR0aD17M30gLz5cbiAgICAgICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgICAgIHR5cGU9XCJ0ZXh0XCJcbiAgICAgICAgICAgICAgICAgIHJlcXVpcmVkXG4gICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj1cIkZ1bGwgTmFtZVwiXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJicnV0YWwtaW5wdXQgYnJ1dGFsLWZvY3VzIHctZnVsbCBweS0zIHBsLTEyIHByLTQgdGV4dC1zbSBmb250LWJvbGQgcGxhY2Vob2xkZXI6dGV4dC1ibGFjay80NVwiXG4gICAgICAgICAgICAgICAgICB2YWx1ZT17Zm9ybURhdGEubmFtZX1cbiAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXsoZSkgPT4gc2V0Rm9ybURhdGEoeyAuLi5mb3JtRGF0YSwgbmFtZTogZS50YXJnZXQudmFsdWUgfSl9XG4gICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICApfVxuXG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlbGF0aXZlXCI+XG4gICAgICAgICAgICAgIDxNYWlsIGNsYXNzTmFtZT1cInBvaW50ZXItZXZlbnRzLW5vbmUgYWJzb2x1dGUgbGVmdC00IHRvcC0xLzIgaC01IHctNSAtdHJhbnNsYXRlLXktMS8yXCIgc3Ryb2tlV2lkdGg9ezN9IC8+XG4gICAgICAgICAgICAgIDxpbnB1dFxuICAgICAgICAgICAgICAgIHR5cGU9XCJlbWFpbFwiXG4gICAgICAgICAgICAgICAgcmVxdWlyZWRcbiAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj1cIkVtYWlsIEFkZHJlc3NcIlxuICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cImJydXRhbC1pbnB1dCBicnV0YWwtZm9jdXMgdy1mdWxsIHB5LTMgcGwtMTIgcHItNCB0ZXh0LXNtIGZvbnQtYm9sZCBwbGFjZWhvbGRlcjp0ZXh0LWJsYWNrLzQ1XCJcbiAgICAgICAgICAgICAgICB2YWx1ZT17Zm9ybURhdGEuZW1haWx9XG4gICAgICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXRGb3JtRGF0YSh7IC4uLmZvcm1EYXRhLCBlbWFpbDogZS50YXJnZXQudmFsdWUgfSl9XG4gICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJyZWxhdGl2ZVwiPlxuICAgICAgICAgICAgICA8TG9jayBjbGFzc05hbWU9XCJwb2ludGVyLWV2ZW50cy1ub25lIGFic29sdXRlIGxlZnQtNCB0b3AtMS8yIGgtNSB3LTUgLXRyYW5zbGF0ZS15LTEvMlwiIHN0cm9rZVdpZHRoPXszfSAvPlxuICAgICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgICB0eXBlPVwicGFzc3dvcmRcIlxuICAgICAgICAgICAgICAgIHJlcXVpcmVkXG4gICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9XCJQYXNzd29yZFwiXG4gICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwiYnJ1dGFsLWlucHV0IGJydXRhbC1mb2N1cyB3LWZ1bGwgcHktMyBwbC0xMiBwci00IHRleHQtc20gZm9udC1ib2xkIHBsYWNlaG9sZGVyOnRleHQtYmxhY2svNDVcIlxuICAgICAgICAgICAgICAgIHZhbHVlPXtmb3JtRGF0YS5wYXNzd29yZH1cbiAgICAgICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldEZvcm1EYXRhKHsgLi4uZm9ybURhdGEsIHBhc3N3b3JkOiBlLnRhcmdldC52YWx1ZSB9KX1cbiAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgICA8YnV0dG9uXG4gICAgICAgICAgICAgIHR5cGU9XCJzdWJtaXRcIlxuICAgICAgICAgICAgICBkaXNhYmxlZD17bG9hZGluZ31cbiAgICAgICAgICAgICAgY2xhc3NOYW1lPVwiYnJ1dGFsLWJ1dHRvbiBmbGV4IHctZnVsbCBpdGVtcy1jZW50ZXIganVzdGlmeS1jZW50ZXIgYmcteWVsbG93IHB4LTUgcHktMyB0ZXh0LWJhc2UgZm9udC1leHRyYWJvbGQgZGlzYWJsZWQ6Y3Vyc29yLW5vdC1hbGxvd2VkIGRpc2FibGVkOm9wYWNpdHktNTVcIlxuICAgICAgICAgICAgPlxuICAgICAgICAgICAgICB7bG9hZGluZyA/IDxMb2FkZXIyIGNsYXNzTmFtZT1cImgtNSB3LTUgYW5pbWF0ZS1zcGluXCIgc3Ryb2tlV2lkdGg9ezN9IC8+IDogaXNMb2dpbiA/ICdTaWduIEluJyA6ICdTaWduIFVwJ31cbiAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgIDwvZm9ybT5cblxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cIm10LTYgdGV4dC1jZW50ZXIgdGV4dC1zbSBmb250LWJvbGQgdGV4dC1ibGFjay82NVwiPlxuICAgICAgICAgICAge2lzTG9naW4gPyBcIkRvbid0IGhhdmUgYW4gYWNjb3VudD8gXCIgOiAnQWxyZWFkeSBoYXZlIGFuIGFjY291bnQ/ICd9XG4gICAgICAgICAgICA8YnV0dG9uIG9uQ2xpY2s9eygpID0+IHNldElzTG9naW4oIWlzTG9naW4pfSBjbGFzc05hbWU9XCJmb250LWV4dHJhYm9sZCB1bmRlcmxpbmUgZGVjb3JhdGlvbi1bM3B4XSB1bmRlcmxpbmUtb2Zmc2V0LTRcIj5cbiAgICAgICAgICAgICAge2lzTG9naW4gPyAnU2lnbiB1cCcgOiAnU2lnbiBpbid9XG4gICAgICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgICA8L3A+XG4gICAgICAgIDwvbW90aW9uLmRpdj5cbiAgICAgIDwvbW90aW9uLmRpdj5cbiAgICA8L0FuaW1hdGVQcmVzZW5jZT5cbiAgKTtcbn07XG5cbmV4cG9ydCBkZWZhdWx0IEF1dGhNb2RhbDtcbiJdLCJmaWxlIjoiQzovVXNlcnMvS3VzaGFsL0Rlc2t0b3AvUHJvamVjdHMvQ2hhdEJvdC9mcm9udGVuZC9zcmMvY29tcG9uZW50cy9BdXRoL0F1dGhNb2RhbC5qc3gifQ==

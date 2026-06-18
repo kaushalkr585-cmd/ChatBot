@@ -1,15 +1,15 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Moon, Sun, Globe } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Globe, Moon, Sun, X } from 'lucide-react';
 import { useSettings } from '../../Context/SettingsContext';
 import { cn } from '../../utils/cn';
+
+const LANGUAGES = ['English', 'Spanish', 'French', 'Hindi', 'German', 'Japanese', 'Korean', 'Chinese'];
 
 const SettingsModal = ({ isOpen, onClose }) => {
   const { theme, setTheme, language, setLanguage } = useSettings();
 
   if (!isOpen) return null;
-
-  const LANGUAGES = ['English', 'Spanish', 'French', 'Hindi', 'German', 'Japanese', 'Korean', 'Chinese'];
 
   return (
     <AnimatePresence>
@@ -17,78 +17,71 @@ const SettingsModal = ({ isOpen, onClose }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
       >
         <motion.div
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.95, opacity: 0 }}
-          className="bg-card w-full max-w-md rounded-2xl p-6 relative shadow-2xl border border-white/10"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 12 }}
+          className="brutal-card relative w-full max-w-md bg-[var(--surface)] p-6"
         >
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full hover:bg-secondary transition-colors"
-          >
-            <X className="w-5 h-5 text-foreground/70" />
+          <button onClick={onClose} className="brutal-icon-button absolute right-4 top-4 h-10 w-10 shadow-brutalSm" aria-label="Close">
+            <X className="h-5 w-5" strokeWidth={3} />
           </button>
 
-          <h2 className="text-2xl font-bold mb-6 text-foreground">Settings</h2>
+          <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-black/55">Control Room</p>
+          <h2 className="mt-1 text-4xl font-extrabold leading-none">Settings</h2>
 
-          <div className="space-y-6">
-            {/* Theme Toggle */}
-            <div className="space-y-3">
-              <label className="text-sm font-medium text-foreground/70 flex items-center gap-2">
-                {theme === 'dark' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+          <div className="mt-7 space-y-6">
+            <section className="rounded-[16px] border-[3px] border-black bg-background p-4 shadow-brutalSm">
+              <label className="mb-3 flex items-center gap-2 text-sm font-extrabold">
+                {theme === 'dark' ? <Moon className="h-5 w-5" strokeWidth={3} /> : <Sun className="h-5 w-5" strokeWidth={3} />}
                 Theme Preference
               </label>
-              <div className="flex gap-2 p-1 bg-secondary rounded-lg">
+              <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={() => setTheme('light')}
                   className={cn(
-                    "flex-1 py-2 text-sm font-medium rounded-md transition-all shadow-sm",
-                    theme === 'light' ? "bg-card text-foreground" : "text-foreground/50 hover:text-foreground"
+                    'rounded-[14px] border-[3px] border-[var(--border)] px-4 py-3 text-sm font-extrabold shadow-brutalSm transition-all duration-200',
+                    theme === 'light' ? 'bg-yellow text-black' : 'bg-[var(--surface)] hover:bg-yellow hover:text-black'
                   )}
                 >
-                  Light Mode
+                  Light
                 </button>
                 <button
                   onClick={() => setTheme('dark')}
                   className={cn(
-                    "flex-1 py-2 text-sm font-medium rounded-md transition-all shadow-sm",
-                    theme === 'dark' ? "bg-card text-foreground" : "text-foreground/50 hover:text-foreground"
+                    'rounded-[14px] border-[3px] border-[var(--border)] px-4 py-3 text-sm font-extrabold shadow-brutalSm transition-all duration-200',
+                    theme === 'dark' ? 'bg-yellow text-black' : 'bg-[var(--surface)] hover:bg-yellow hover:text-black'
                   )}
                 >
-                  Dark Mode
+                  Dark
                 </button>
               </div>
-            </div>
+            </section>
 
-            {/* Language Selector */}
-            <div className="space-y-3">
-               <label className="text-sm font-medium text-foreground/70 flex items-center gap-2">
-                <Globe className="w-4 h-4" />
+            <section className="rounded-[16px] border-[3px] border-black bg-background p-4 shadow-brutalSm">
+              <label className="mb-3 flex items-center gap-2 text-sm font-extrabold">
+                <Globe className="h-5 w-5" strokeWidth={3} />
                 Response Language
               </label>
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
-                className="w-full bg-secondary/50 border border-white/10 rounded-xl px-4 py-3 text-foreground outline-none focus:border-accent transition-colors appearance-none"
+                className="brutal-input brutal-focus w-full appearance-none px-4 py-3 text-sm font-extrabold"
               >
-                {LANGUAGES.map(lang => (
-                  <option key={lang} value={lang} className="bg-white text-black dark:bg-[#0B0B0F] dark:text-white">{lang}</option>
+                {LANGUAGES.map((lang) => (
+                  <option key={lang} value={lang}>
+                    {lang}
+                  </option>
                 ))}
               </select>
-            </div>
+            </section>
           </div>
-          
-          <div className="mt-8">
-            <button
-              onClick={onClose}
-              className="w-full py-3 bg-accent text-white rounded-xl font-medium hover:bg-accent/90 transition-colors"
-            >
-              Save Settings
-            </button>
-          </div>
+
+          <button onClick={onClose} className="brutal-button mt-7 w-full bg-yellow px-5 py-3 text-base font-extrabold text-black">
+            Save Settings
+          </button>
         </motion.div>
       </motion.div>
     </AnimatePresence>

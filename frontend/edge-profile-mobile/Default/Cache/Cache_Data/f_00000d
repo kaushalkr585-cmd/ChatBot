@@ -1,0 +1,222 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/Settings/SettingsModal.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=b3e58a62"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+var _s = $RefreshSig$();
+import __vite__cjsImport1_react from "/node_modules/.vite/deps/react.js?v=b3e58a62"; const React = __vite__cjsImport1_react.__esModule ? __vite__cjsImport1_react.default : __vite__cjsImport1_react;
+import { AnimatePresence, motion } from "/node_modules/.vite/deps/framer-motion.js?v=b3e58a62";
+import { Globe, Moon, Sun, X } from "/node_modules/.vite/deps/lucide-react.js?v=b3e58a62";
+import { useSettings } from "/src/Context/SettingsContext.jsx";
+import { cn } from "/src/utils/cn.js";
+const LANGUAGES = ["English", "Spanish", "French", "Hindi", "German", "Japanese", "Korean", "Chinese"];
+const SettingsModal = ({ isOpen, onClose }) => {
+  _s();
+  const { theme, setTheme, language, setLanguage } = useSettings();
+  if (!isOpen) return null;
+  return /* @__PURE__ */ jsxDEV(AnimatePresence, { children: /* @__PURE__ */ jsxDEV(
+    motion.div,
+    {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      exit: { opacity: 0 },
+      className: "fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4",
+      children: /* @__PURE__ */ jsxDEV(
+        motion.div,
+        {
+          initial: { opacity: 0, y: 18 },
+          animate: { opacity: 1, y: 0 },
+          exit: { opacity: 0, y: 12 },
+          className: "brutal-card relative w-full max-w-md bg-white p-6",
+          children: [
+            /* @__PURE__ */ jsxDEV("button", { onClick: onClose, className: "brutal-icon-button absolute right-4 top-4 h-10 w-10 shadow-brutalSm", "aria-label": "Close", children: /* @__PURE__ */ jsxDEV(X, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+              lineNumber: 29,
+              columnNumber: 13
+            }, this) }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+              lineNumber: 28,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "text-[11px] font-extrabold uppercase tracking-[0.18em] text-black/55", children: "Control Room" }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+              lineNumber: 32,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("h2", { className: "mt-1 text-4xl font-extrabold leading-none", children: "Settings" }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+              lineNumber: 33,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("div", { className: "mt-7 space-y-6", children: [
+              /* @__PURE__ */ jsxDEV("section", { className: "rounded-[16px] border-[3px] border-black bg-background p-4 shadow-brutalSm", children: [
+                /* @__PURE__ */ jsxDEV("label", { className: "mb-3 flex items-center gap-2 text-sm font-extrabold", children: [
+                  theme === "dark" ? /* @__PURE__ */ jsxDEV(Moon, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                    lineNumber: 38,
+                    columnNumber: 37
+                  }, this) : /* @__PURE__ */ jsxDEV(Sun, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                    lineNumber: 38,
+                    columnNumber: 84
+                  }, this),
+                  "Theme Preference"
+                ] }, void 0, true, {
+                  fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                  lineNumber: 37,
+                  columnNumber: 15
+                }, this),
+                /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-2 gap-3", children: [
+                  /* @__PURE__ */ jsxDEV(
+                    "button",
+                    {
+                      onClick: () => setTheme("light"),
+                      className: cn(
+                        "rounded-[14px] border-[3px] border-black px-4 py-3 text-sm font-extrabold shadow-brutalSm transition-all duration-200",
+                        theme === "light" ? "bg-yellow" : "bg-white hover:bg-yellow"
+                      ),
+                      children: "Light"
+                    },
+                    void 0,
+                    false,
+                    {
+                      fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                      lineNumber: 42,
+                      columnNumber: 17
+                    },
+                    this
+                  ),
+                  /* @__PURE__ */ jsxDEV(
+                    "button",
+                    {
+                      onClick: () => setTheme("dark"),
+                      className: cn(
+                        "rounded-[14px] border-[3px] border-black px-4 py-3 text-sm font-extrabold shadow-brutalSm transition-all duration-200",
+                        theme === "dark" ? "bg-yellow" : "bg-white hover:bg-yellow"
+                      ),
+                      children: "Dark"
+                    },
+                    void 0,
+                    false,
+                    {
+                      fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                      lineNumber: 51,
+                      columnNumber: 17
+                    },
+                    this
+                  )
+                ] }, void 0, true, {
+                  fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                  lineNumber: 41,
+                  columnNumber: 15
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                lineNumber: 36,
+                columnNumber: 13
+              }, this),
+              /* @__PURE__ */ jsxDEV("section", { className: "rounded-[16px] border-[3px] border-black bg-background p-4 shadow-brutalSm", children: [
+                /* @__PURE__ */ jsxDEV("label", { className: "mb-3 flex items-center gap-2 text-sm font-extrabold", children: [
+                  /* @__PURE__ */ jsxDEV(Globe, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                    lineNumber: 65,
+                    columnNumber: 17
+                  }, this),
+                  "Response Language"
+                ] }, void 0, true, {
+                  fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                  lineNumber: 64,
+                  columnNumber: 15
+                }, this),
+                /* @__PURE__ */ jsxDEV(
+                  "select",
+                  {
+                    value: language,
+                    onChange: (e) => setLanguage(e.target.value),
+                    className: "brutal-input brutal-focus w-full appearance-none px-4 py-3 text-sm font-extrabold",
+                    children: LANGUAGES.map(
+                      (lang) => /* @__PURE__ */ jsxDEV("option", { value: lang, children: lang }, lang, false, {
+                        fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                        lineNumber: 74,
+                        columnNumber: 17
+                      }, this)
+                    )
+                  },
+                  void 0,
+                  false,
+                  {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                    lineNumber: 68,
+                    columnNumber: 15
+                  },
+                  this
+                )
+              ] }, void 0, true, {
+                fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+                lineNumber: 63,
+                columnNumber: 13
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+              lineNumber: 35,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("button", { onClick: onClose, className: "brutal-button mt-7 w-full bg-yellow px-5 py-3 text-base font-extrabold", children: "Save Settings" }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+              lineNumber: 82,
+              columnNumber: 11
+            }, this)
+          ]
+        },
+        void 0,
+        true,
+        {
+          fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+          lineNumber: 22,
+          columnNumber: 9
+        },
+        this
+      )
+    },
+    void 0,
+    false,
+    {
+      fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+      lineNumber: 16,
+      columnNumber: 7
+    },
+    this
+  ) }, void 0, false, {
+    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx",
+    lineNumber: 15,
+    columnNumber: 5
+  }, this);
+};
+_s(SettingsModal, "CiapwcjndCeXi0+au74R6+pntl0=", false, function() {
+  return [useSettings];
+});
+_c = SettingsModal;
+export default SettingsModal;
+var _c;
+$RefreshReg$(_c, "SettingsModal");
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) {
+  return RefreshRuntime.register(type, "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Settings/SettingsModal.jsx " + id);
+}
+function $RefreshSig$() {
+  return RefreshRuntime.createSignatureFunctionForTransform();
+}
+
+//# sourceMappingURL=data:application/json;base64,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LFdBQVUsdURBQ2Y7QUFBQSx5Q0FBQyxTQUFNLFdBQVUsV0FBVSxhQUFhLEtBQXhDO0FBQUE7QUFBQTtBQUFBO0FBQUEseUJBQTBDO0FBQUE7QUFBQSxxQkFENUM7QUFBQTtBQUFBO0FBQUE7QUFBQSx1QkFHQTtBQUFBLGdCQUNBO0FBQUEsa0JBQUM7QUFBQTtBQUFBLG9CQUNDLE9BQU9FO0FBQUFBLG9CQUNQLFVBQVUsQ0FBQ0ksTUFBTUgsWUFBWUcsRUFBRUMsT0FBT0MsS0FBSztBQUFBLG9CQUMzQyxXQUFVO0FBQUEsb0JBRVRiLG9CQUFVYztBQUFBQSxzQkFBSSxDQUFDQyxTQUNkLHVCQUFDLFlBQWtCLE9BQU9BLE1BQ3ZCQSxrQkFEVUEsTUFBYjtBQUFBO0FBQUE7QUFBQTtBQUFBLDZCQUVBO0FBQUEsb0JBQ0Q7QUFBQTtBQUFBLGtCQVRIO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxnQkFVQTtBQUFBLG1CQWZGO0FBQUE7QUFBQTtBQUFBO0FBQUEscUJBZ0JBO0FBQUEsaUJBNUNGO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBNkNBO0FBQUEsWUFFQSx1QkFBQyxZQUFPLFNBQVNaLFNBQVMsV0FBVSwwRUFBd0UsNkJBQTVHO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBRUE7QUFBQTtBQUFBO0FBQUEsUUE5REY7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLE1BK0RBO0FBQUE7QUFBQSxJQXJFRjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsRUFzRUEsS0F2RUY7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQXdFQTtBQUVKO0FBQUVDLEdBaEZJSCxlQUFhO0FBQUEsVUFDa0NILFdBQVc7QUFBQTtBQUFBLEtBRDFERztBQWtGTixlQUFlQTtBQUFjLElBQUFlO0FBQUEsYUFBQUEsSUFBQSIsIm5hbWVzIjpbIlJlYWN0IiwiQW5pbWF0ZVByZXNlbmNlIiwibW90aW9uIiwiR2xvYmUiLCJNb29uIiwiU3VuIiwiWCIsInVzZVNldHRpbmdzIiwiY24iLCJMQU5HVUFHRVMiLCJTZXR0aW5nc01vZGFsIiwiaXNPcGVuIiwib25DbG9zZSIsIl9zIiwidGhlbWUiLCJzZXRUaGVtZSIsImxhbmd1YWdlIiwic2V0TGFuZ3VhZ2UiLCJvcGFjaXR5IiwieSIsImUiLCJ0YXJnZXQiLCJ2YWx1ZSIsIm1hcCIsImxhbmciLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJTZXR0aW5nc01vZGFsLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IHsgQW5pbWF0ZVByZXNlbmNlLCBtb3Rpb24gfSBmcm9tICdmcmFtZXItbW90aW9uJztcbmltcG9ydCB7IEdsb2JlLCBNb29uLCBTdW4sIFggfSBmcm9tICdsdWNpZGUtcmVhY3QnO1xuaW1wb3J0IHsgdXNlU2V0dGluZ3MgfSBmcm9tICcuLi8uLi9Db250ZXh0L1NldHRpbmdzQ29udGV4dCc7XG5pbXBvcnQgeyBjbiB9IGZyb20gJy4uLy4uL3V0aWxzL2NuJztcblxuY29uc3QgTEFOR1VBR0VTID0gWydFbmdsaXNoJywgJ1NwYW5pc2gnLCAnRnJlbmNoJywgJ0hpbmRpJywgJ0dlcm1hbicsICdKYXBhbmVzZScsICdLb3JlYW4nLCAnQ2hpbmVzZSddO1xuXG5jb25zdCBTZXR0aW5nc01vZGFsID0gKHsgaXNPcGVuLCBvbkNsb3NlIH0pID0+IHtcbiAgY29uc3QgeyB0aGVtZSwgc2V0VGhlbWUsIGxhbmd1YWdlLCBzZXRMYW5ndWFnZSB9ID0gdXNlU2V0dGluZ3MoKTtcblxuICBpZiAoIWlzT3BlbikgcmV0dXJuIG51bGw7XG5cbiAgcmV0dXJuIChcbiAgICA8QW5pbWF0ZVByZXNlbmNlPlxuICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgaW5pdGlhbD17eyBvcGFjaXR5OiAwIH19XG4gICAgICAgIGFuaW1hdGU9e3sgb3BhY2l0eTogMSB9fVxuICAgICAgICBleGl0PXt7IG9wYWNpdHk6IDAgfX1cbiAgICAgICAgY2xhc3NOYW1lPVwiZml4ZWQgaW5zZXQtMCB6LTUwIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIGJnLWJsYWNrLzU1IHAtNFwiXG4gICAgICA+XG4gICAgICAgIDxtb3Rpb24uZGl2XG4gICAgICAgICAgaW5pdGlhbD17eyBvcGFjaXR5OiAwLCB5OiAxOCB9fVxuICAgICAgICAgIGFuaW1hdGU9e3sgb3BhY2l0eTogMSwgeTogMCB9fVxuICAgICAgICAgIGV4aXQ9e3sgb3BhY2l0eTogMCwgeTogMTIgfX1cbiAgICAgICAgICBjbGFzc05hbWU9XCJicnV0YWwtY2FyZCByZWxhdGl2ZSB3LWZ1bGwgbWF4LXctbWQgYmctd2hpdGUgcC02XCJcbiAgICAgICAgPlxuICAgICAgICAgIDxidXR0b24gb25DbGljaz17b25DbG9zZX0gY2xhc3NOYW1lPVwiYnJ1dGFsLWljb24tYnV0dG9uIGFic29sdXRlIHJpZ2h0LTQgdG9wLTQgaC0xMCB3LTEwIHNoYWRvdy1icnV0YWxTbVwiIGFyaWEtbGFiZWw9XCJDbG9zZVwiPlxuICAgICAgICAgICAgPFggY2xhc3NOYW1lPVwiaC01IHctNVwiIHN0cm9rZVdpZHRoPXszfSAvPlxuICAgICAgICAgIDwvYnV0dG9uPlxuXG4gICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC1bMTFweF0gZm9udC1leHRyYWJvbGQgdXBwZXJjYXNlIHRyYWNraW5nLVswLjE4ZW1dIHRleHQtYmxhY2svNTVcIj5Db250cm9sIFJvb208L3A+XG4gICAgICAgICAgPGgyIGNsYXNzTmFtZT1cIm10LTEgdGV4dC00eGwgZm9udC1leHRyYWJvbGQgbGVhZGluZy1ub25lXCI+U2V0dGluZ3M8L2gyPlxuXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJtdC03IHNwYWNlLXktNlwiPlxuICAgICAgICAgICAgPHNlY3Rpb24gY2xhc3NOYW1lPVwicm91bmRlZC1bMTZweF0gYm9yZGVyLVszcHhdIGJvcmRlci1ibGFjayBiZy1iYWNrZ3JvdW5kIHAtNCBzaGFkb3ctYnJ1dGFsU21cIj5cbiAgICAgICAgICAgICAgPGxhYmVsIGNsYXNzTmFtZT1cIm1iLTMgZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgdGV4dC1zbSBmb250LWV4dHJhYm9sZFwiPlxuICAgICAgICAgICAgICAgIHt0aGVtZSA9PT0gJ2RhcmsnID8gPE1vb24gY2xhc3NOYW1lPVwiaC01IHctNVwiIHN0cm9rZVdpZHRoPXszfSAvPiA6IDxTdW4gY2xhc3NOYW1lPVwiaC01IHctNVwiIHN0cm9rZVdpZHRoPXszfSAvPn1cbiAgICAgICAgICAgICAgICBUaGVtZSBQcmVmZXJlbmNlXG4gICAgICAgICAgICAgIDwvbGFiZWw+XG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZ3JpZCBncmlkLWNvbHMtMiBnYXAtM1wiPlxuICAgICAgICAgICAgICAgIDxidXR0b25cbiAgICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHNldFRoZW1lKCdsaWdodCcpfVxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtjbihcbiAgICAgICAgICAgICAgICAgICAgJ3JvdW5kZWQtWzE0cHhdIGJvcmRlci1bM3B4XSBib3JkZXItYmxhY2sgcHgtNCBweS0zIHRleHQtc20gZm9udC1leHRyYWJvbGQgc2hhZG93LWJydXRhbFNtIHRyYW5zaXRpb24tYWxsIGR1cmF0aW9uLTIwMCcsXG4gICAgICAgICAgICAgICAgICAgIHRoZW1lID09PSAnbGlnaHQnID8gJ2JnLXllbGxvdycgOiAnYmctd2hpdGUgaG92ZXI6YmcteWVsbG93J1xuICAgICAgICAgICAgICAgICAgKX1cbiAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICBMaWdodFxuICAgICAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgICAgICAgIDxidXR0b25cbiAgICAgICAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHNldFRoZW1lKCdkYXJrJyl9XG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2NuKFxuICAgICAgICAgICAgICAgICAgICAncm91bmRlZC1bMTRweF0gYm9yZGVyLVszcHhdIGJvcmRlci1ibGFjayBweC00IHB5LTMgdGV4dC1zbSBmb250LWV4dHJhYm9sZCBzaGFkb3ctYnJ1dGFsU20gdHJhbnNpdGlvbi1hbGwgZHVyYXRpb24tMjAwJyxcbiAgICAgICAgICAgICAgICAgICAgdGhlbWUgPT09ICdkYXJrJyA/ICdiZy15ZWxsb3cnIDogJ2JnLXdoaXRlIGhvdmVyOmJnLXllbGxvdydcbiAgICAgICAgICAgICAgICAgICl9XG4gICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgICAgRGFya1xuICAgICAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgIDwvc2VjdGlvbj5cblxuICAgICAgICAgICAgPHNlY3Rpb24gY2xhc3NOYW1lPVwicm91bmRlZC1bMTZweF0gYm9yZGVyLVszcHhdIGJvcmRlci1ibGFjayBiZy1iYWNrZ3JvdW5kIHAtNCBzaGFkb3ctYnJ1dGFsU21cIj5cbiAgICAgICAgICAgICAgPGxhYmVsIGNsYXNzTmFtZT1cIm1iLTMgZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTIgdGV4dC1zbSBmb250LWV4dHJhYm9sZFwiPlxuICAgICAgICAgICAgICAgIDxHbG9iZSBjbGFzc05hbWU9XCJoLTUgdy01XCIgc3Ryb2tlV2lkdGg9ezN9IC8+XG4gICAgICAgICAgICAgICAgUmVzcG9uc2UgTGFuZ3VhZ2VcbiAgICAgICAgICAgICAgPC9sYWJlbD5cbiAgICAgICAgICAgICAgPHNlbGVjdFxuICAgICAgICAgICAgICAgIHZhbHVlPXtsYW5ndWFnZX1cbiAgICAgICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldExhbmd1YWdlKGUudGFyZ2V0LnZhbHVlKX1cbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJicnV0YWwtaW5wdXQgYnJ1dGFsLWZvY3VzIHctZnVsbCBhcHBlYXJhbmNlLW5vbmUgcHgtNCBweS0zIHRleHQtc20gZm9udC1leHRyYWJvbGRcIlxuICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAge0xBTkdVQUdFUy5tYXAoKGxhbmcpID0+IChcbiAgICAgICAgICAgICAgICAgIDxvcHRpb24ga2V5PXtsYW5nfSB2YWx1ZT17bGFuZ30+XG4gICAgICAgICAgICAgICAgICAgIHtsYW5nfVxuICAgICAgICAgICAgICAgICAgPC9vcHRpb24+XG4gICAgICAgICAgICAgICAgKSl9XG4gICAgICAgICAgICAgIDwvc2VsZWN0PlxuICAgICAgICAgICAgPC9zZWN0aW9uPlxuICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgPGJ1dHRvbiBvbkNsaWNrPXtvbkNsb3NlfSBjbGFzc05hbWU9XCJicnV0YWwtYnV0dG9uIG10LTcgdy1mdWxsIGJnLXllbGxvdyBweC01IHB5LTMgdGV4dC1iYXNlIGZvbnQtZXh0cmFib2xkXCI+XG4gICAgICAgICAgICBTYXZlIFNldHRpbmdzXG4gICAgICAgICAgPC9idXR0b24+XG4gICAgICAgIDwvbW90aW9uLmRpdj5cbiAgICAgIDwvbW90aW9uLmRpdj5cbiAgICA8L0FuaW1hdGVQcmVzZW5jZT5cbiAgKTtcbn07XG5cbmV4cG9ydCBkZWZhdWx0IFNldHRpbmdzTW9kYWw7XG4iXSwiZmlsZSI6IkM6L1VzZXJzL0t1c2hhbC9EZXNrdG9wL1Byb2plY3RzL0NoYXRCb3QvZnJvbnRlbmQvc3JjL2NvbXBvbmVudHMvU2V0dGluZ3MvU2V0dGluZ3NNb2RhbC5qc3gifQ==

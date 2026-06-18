@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: 'class',
   theme: {
@@ -14,38 +14,31 @@ export default {
         secondary: 'var(--secondary)',
         accent: 'var(--accent)',
         border: 'var(--border)',
-        'glass-bg': 'var(--glass-bg)',
+        yellow: 'var(--yellow)',
+        green: 'var(--green)',
+        red: 'var(--red)',
       },
       fontFamily: {
-        outfit: ['Outfit', 'sans-serif'],
+        sans: ['Pixelify Sans', 'system-ui', 'sans-serif'],
+        pixelify: ['Pixelify Sans', 'system-ui', 'sans-serif'],
       },
-      backgroundImage: {
-        'gemini-gradient': 'linear-gradient(135deg, #4285f4, #9b72cb, #d96570)',
-        'glass-gradient': 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.05) 100%)',
+      boxShadow: {
+        brutal: '6px 6px 0 #000000',
+        brutalSm: '4px 4px 0 #000000',
+      },
+      borderRadius: {
+        brutal: '18px',
       },
       animation: {
-        'blob': 'blob 7s infinite',
-        'typing': 'typing 1.4s infinite ease-in-out',
-        'fade-in-up': 'fadeInUp 0.4s ease-out forwards',
-        'spin-slow': 'spin 3s linear infinite',
+        typing: 'typing 1.1s infinite ease-in-out',
       },
       keyframes: {
-        blob: {
-          '0%': { transform: 'translate(0px, 0px) scale(1)' },
-          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-          '100%': { transform: 'translate(0px, 0px) scale(1)' },
-        },
         typing: {
-          '0%, 100%': { transform: 'translateY(0)', opacity: '0.4' },
+          '0%, 100%': { transform: 'translateY(0)', opacity: '0.35' },
           '50%': { transform: 'translateY(-4px)', opacity: '1' },
         },
-        fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        }
-      }
+      },
     },
   },
   plugins: [],
-}
+};

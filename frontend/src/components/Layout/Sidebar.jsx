@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, Settings, Plus, History, LogOut, PenTool, Trash2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Bot, History, LogOut, MessageSquareText, Plus, Settings, Trash2, X } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { useAuth } from '../../Context/AuthContext';
 
-const Sidebar = ({ isOpen, closeSidebar, onChatSelect, onNewChat, onSettingsClick, currentChatId, onChatDeleted }) => {
+const Sidebar = ({
+  isOpen,
+  closeSidebar,
+  onChatSelect,
+  onNewChat,
+  onSettingsClick,
+  currentChatId,
+  onChatDeleted,
+  refreshKey,
+}) => {
   const { user, token, logout } = useAuth();
   const [chats, setChats] = useState([]);
 
@@ -14,19 +23,19 @@ const Sidebar = ({ isOpen, closeSidebar, onChatSelect, onNewChat, onSettingsClic
     } else {
       setChats([]);
     }
-  }, [user, token, isOpen]); // Refresh when opened or user changes
+  }, [user, token, isOpen, refreshKey]);
 
   const fetchChats = async () => {
     try {
       const res = await fetch('/api/chats', {
-        headers: { 'Authorization': `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
         const data = await res.json();
         setChats(data);
       }
     } catch (err) {
-      console.error("Failed to fetch history", err);
+      console.error('Failed to fetch history', err);
     }
   };
 
@@ -35,102 +44,155 @@ const Sidebar = ({ isOpen, closeSidebar, onChatSelect, onNewChat, onSettingsClic
     try {
       const res = await fetch(`/api/chats/${chatId}`, {
         method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
-        setChats(prev => prev.filter(c => c._id !== chatId));
-        if (onChatDeleted) onChatDeleted(chatId);
+        setChats((prev) => prev.filter((chat) => chat._id !== chatId));
+        onChatDeleted?.(chatId);
       }
     } catch (err) {
-      console.error("Failed to delete chat", err);
+      console.error('Failed to delete chat', err);
     }
   };
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+
+  const handleNewChat = () => {
+    onNewChat();
+    closeSidebar();
+  };
+
+  const sidebarContent = (
+    <div className="flex h-full flex-col gap-5 p-4">
+      <div className="brutal-card bg-yellow p-5 text-black">
+        <div className="mb-5 flex items-start justify-between gap-3">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl border-[3px] border-black bg-white shadow-brutalSm">
+            <Bot className="h-8 w-8 text-black" strokeWidth={2.8} />
+          </div>
+          <button
             onClick={closeSidebar}
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden"
-          />
-          <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-            className="fixed top-0 left-0 bottom-0 w-64 bg-[#f0f4f9] dark:bg-[#131314] z-50 flex flex-col pt-16 transition-colors duration-300"
+            className="brutal-icon-button h-10 w-10 bg-white text-black lg:hidden"
+            aria-label="Close sidebar"
           >
-            <div className="p-4">
-              <button onClick={() => { onNewChat(); closeSidebar(); }} className="w-full flex items-center gap-3 hover:bg-[#e1e5ea] dark:hover:bg-[#282a2c] text-foreground/90 rounded-full py-3 px-4 transition-colors">
-                <Plus className="w-5 h-5 text-foreground/70" />
-                <span className="font-medium text-sm">New chat</span>
-              </button>
-            </div>
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+        <p className="text-[11px] font-extrabold uppercase tracking-[0.16em]">Control Panel</p>
+        <h1 className="mt-1 text-4xl font-extrabold leading-none tracking-normal">CHATBOT</h1>
+        <p className="mt-2 text-base font-bold">Talk Smarter</p>
+      </div>
 
-            <div className="flex-1 overflow-y-auto custom-scrollbar px-3 py-2 space-y-1 mt-4">
-              {user ? (
-                <>
-                  <h3 className="text-xs font-semibold text-foreground/50 uppercase tracking-wider mb-3 px-3">
-                    <History className="inline w-4 h-4 mr-1" />
-                    Recent
-                  </h3>
-                  {chats.length === 0 ? (
-                    <p className="text-xs text-foreground/40 px-3">No recent chats.</p>
-                  ) : (
-                    chats.map((chat) => (
-                      <button
-                        key={chat._id}
-                        onClick={() => { onChatSelect(chat); closeSidebar(); }}
-                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-colors text-sm text-foreground/80 group overflow-hidden ${
-                          currentChatId === chat._id ? 'bg-[#e1e5ea] dark:bg-[#282a2c] text-foreground' : 'hover:bg-[#e1e5ea] dark:hover:bg-[#282a2c]'
-                        }`}
-                      >
-                        <div className="flex items-center gap-3 truncate">
-                          <MessageSquare className={`w-4 h-4 shrink-0 transition-colors ${currentChatId === chat._id ? 'text-accent' : 'text-foreground/40 group-hover:text-accent'}`} />
-                          <span className="truncate">{chat.title}</span>
-                        </div>
-                        <div 
-                          onClick={(e) => handleDeleteChat(e, chat._id)}
-                          className="opacity-0 group-hover:opacity-100 p-1.5 hover:bg-black/10 dark:hover:bg-white/10 rounded-md transition-all text-red-500/70 hover:text-red-500"
-                          title="Delete chat"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </div>
-                      </button>
-                    ))
+      <button
+        onClick={handleNewChat}
+        className="brutal-button flex w-full items-center justify-center gap-3 bg-yellow px-5 py-4 text-base font-extrabold uppercase tracking-normal text-black"
+      >
+        <Plus className="h-5 w-5" strokeWidth={3} />
+        New Chat
+      </button>
+
+      <section className="brutal-card flex min-h-0 flex-1 flex-col bg-[var(--surface)] p-4">
+        <div className="mb-4 flex items-center justify-between">
+          <div>
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[var(--muted)]">Workspace</p>
+            <h2 className="flex items-center gap-2 text-xl font-extrabold">
+              <History className="h-5 w-5" strokeWidth={3} />
+              Recent Chats
+            </h2>
+          </div>
+        </div>
+
+        <div className="custom-scrollbar -mr-2 flex-1 space-y-3 overflow-y-auto pr-2">
+          {user ? (
+            chats.length === 0 ? (
+              <div className="rounded-2xl border-[3px] border-[var(--border)] border-dashed bg-background p-4 text-sm font-bold">
+                No saved chats yet. Start a conversation and it will land here.
+              </div>
+            ) : (
+              chats.map((chat) => (
+                <button
+                  key={chat._id}
+                  onClick={() => {
+                    onChatSelect(chat);
+                    closeSidebar();
+                  }}
+                  className={cn(
+                    'brutal-press flex w-full items-center gap-3 rounded-2xl border-[3px] border-[var(--border)] px-3 py-3 text-left shadow-brutalSm transition-all duration-200',
+                    currentChatId === chat._id ? 'bg-yellow' : 'bg-[var(--surface)] hover:bg-yellow'
                   )}
-                </>
-              ) : (
-                <div className="px-3 text-center mt-10 opacity-50">
-                   <p className="text-sm">Sign in to sync your chat history.</p>
-                </div>
-              )}
-            </div>
-
-            {/* Bottom Actions */}
-            <div className="mt-auto p-4 bg-[#f0f4f9] dark:bg-[#131314] space-y-1 pb-6 transition-colors duration-300">
-              <button
-                onClick={onSettingsClick}
-                className="w-full flex items-center gap-3 text-left px-3 py-2.5 rounded-xl hover:bg-[#e1e5ea] dark:hover:bg-[#282a2c] transition-colors text-sm text-foreground/80"
-              >
-                <Settings className="w-4 h-4" />
-                <span className="font-medium">Settings & help</span>
-              </button>
-              
-              {user && (
-                <button onClick={logout} className="w-full flex items-center gap-3 text-left px-3 py-2.5 rounded-xl hover:bg-red-500/10 text-red-500 transition-colors text-sm">
-                  <LogOut className="w-4 h-4" />
-                  <span className="font-medium">Sign Out</span>
+                >
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-[3px] border-[var(--border)] bg-green">
+                    <MessageSquareText className="h-5 w-5" strokeWidth={3} />
+                  </span>
+                  <span className="min-w-0 flex-1 truncate text-sm font-extrabold">{chat.title}</span>
+                  <span
+                    role="button"
+                    tabIndex={0}
+                    onClick={(e) => handleDeleteChat(e, chat._id)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleDeleteChat(e, chat._id)}
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border-[3px] border-[var(--border)] bg-[var(--surface)] transition-colors hover:bg-red"
+                    title="Delete chat"
+                  >
+                    <Trash2 className="h-4 w-4" strokeWidth={3} />
+                  </span>
                 </button>
-              )}
+              ))
+            )
+          ) : (
+            <div className="rounded-2xl border-[3px] border-[var(--border)] border-dashed bg-background p-4 text-sm font-bold">
+              Sign in to sync your chat history across sessions.
             </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+          )}
+        </div>
+      </section>
+
+      <div className="grid gap-3">
+        <button
+          onClick={onSettingsClick}
+          className="brutal-button flex w-full items-center gap-3 bg-[var(--surface)] px-4 py-3 text-left text-sm font-extrabold"
+        >
+          <Settings className="h-5 w-5" strokeWidth={3} />
+          Settings & Help
+        </button>
+        {user && (
+          <button
+            onClick={logout}
+            className="brutal-button flex w-full items-center gap-3 bg-red px-4 py-3 text-left text-sm font-extrabold"
+          >
+            <LogOut className="h-5 w-5" strokeWidth={3} />
+            Sign Out
+          </button>
+        )}
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      <aside className="brutal-panel relative z-20 hidden h-full w-[300px] shrink-0 overflow-hidden bg-[var(--surface)] lg:block">
+        {sidebarContent}
+      </aside>
+
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeSidebar}
+              className="fixed inset-0 z-40 bg-black/45 lg:hidden"
+            />
+            <motion.aside
+              initial={{ x: '-105%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-105%' }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              className="fixed inset-y-3 left-3 z-50 w-[min(300px,calc(100vw-24px))] overflow-hidden rounded-[18px] border-[3px] border-[var(--border)] bg-[var(--surface)] shadow-brutal lg:hidden"
+            >
+              {sidebarContent}
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

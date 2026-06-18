@@ -2,17 +2,9 @@ import React from 'react';
 
 const Background = () => {
   return (
-    <div className="fixed inset-0 -z-10 bg-background overflow-hidden pointer-events-none">
-      {/* Animated blob 1 */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-accent/20 blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-blob"></div>
-      
-      {/* Animated blob 2 */}
-      <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-blue-500/20 blur-[100px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-2000"></div>
-
-      {/* Animated blob 3 */}
-      <div className="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] rounded-full bg-purple-500/20 blur-[130px] mix-blend-multiply dark:mix-blend-screen animate-blob animation-delay-4000"></div>
-
-      {/* Glass overlay for subtle noise/texture could go here if needed */}
+    <div className="pointer-events-none fixed inset-0 -z-10 bg-background">
+      <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(#000_1px,transparent_1px),linear-gradient(90deg,#000_1px,transparent_1px)] [background-size:32px_32px]" />
+      <div className="absolute left-0 top-0 h-4 w-full border-b-[3px] border-black bg-yellow" />
     </div>
   );
 };

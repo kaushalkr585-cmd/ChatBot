@@ -1,0 +1,193 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/Auth/ProfileModal.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=b3e58a62"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+var _s = $RefreshSig$();
+import __vite__cjsImport1_react from "/node_modules/.vite/deps/react.js?v=b3e58a62"; const React = __vite__cjsImport1_react.__esModule ? __vite__cjsImport1_react.default : __vite__cjsImport1_react; const useRef = __vite__cjsImport1_react["useRef"]; const useState = __vite__cjsImport1_react["useState"];
+import { AnimatePresence, motion } from "/node_modules/.vite/deps/framer-motion.js?v=b3e58a62";
+import { Loader2, Upload, User as UserIcon, X } from "/node_modules/.vite/deps/lucide-react.js?v=b3e58a62";
+import { useAuth } from "/src/Context/AuthContext.jsx";
+const ProfileModal = ({ isOpen, onClose }) => {
+  _s();
+  const { user, updateProfilePic } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const fileInputRef = useRef(null);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert("File size must be less than 5MB");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        setLoading(true);
+        try {
+          await updateProfilePic(reader.result);
+        } catch (err) {
+          alert(err.message);
+        } finally {
+          setLoading(false);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  if (!isOpen || !user) return null;
+  return /* @__PURE__ */ jsxDEV(AnimatePresence, { children: /* @__PURE__ */ jsxDEV(
+    motion.div,
+    {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      exit: { opacity: 0 },
+      className: "fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4",
+      children: /* @__PURE__ */ jsxDEV(
+        motion.div,
+        {
+          initial: { opacity: 0, y: 18 },
+          animate: { opacity: 1, y: 0 },
+          exit: { opacity: 0, y: 12 },
+          className: "brutal-card relative flex w-full max-w-sm flex-col items-center bg-white p-6 text-center",
+          children: [
+            /* @__PURE__ */ jsxDEV("button", { onClick: onClose, className: "brutal-icon-button absolute right-4 top-4 h-10 w-10 shadow-brutalSm", "aria-label": "Close", children: /* @__PURE__ */ jsxDEV(X, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+              lineNumber: 51,
+              columnNumber: 13
+            }, this) }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+              lineNumber: 50,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "text-[11px] font-extrabold uppercase tracking-[0.18em] text-black/55", children: "Profile" }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+              lineNumber: 54,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("h2", { className: "mt-1 text-3xl font-extrabold", children: "Profile Picture" }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+              lineNumber: 55,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV(
+              "button",
+              {
+                type: "button",
+                className: "brutal-button relative mt-6 flex h-36 w-36 items-center justify-center overflow-hidden rounded-[18px] bg-yellow",
+                onClick: () => !loading && fileInputRef.current?.click(),
+                children: [
+                  user.profilePicture ? /* @__PURE__ */ jsxDEV("img", { src: user.profilePicture, alt: "Profile", className: "h-full w-full object-cover" }, void 0, false, {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+                    lineNumber: 63,
+                    columnNumber: 13
+                  }, this) : /* @__PURE__ */ jsxDEV(UserIcon, { className: "h-14 w-14", strokeWidth: 3 }, void 0, false, {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+                    lineNumber: 65,
+                    columnNumber: 13
+                  }, this),
+                  /* @__PURE__ */ jsxDEV("span", { className: "absolute bottom-2 right-2 flex h-11 w-11 items-center justify-center rounded-xl border-[3px] border-black bg-white", children: loading ? /* @__PURE__ */ jsxDEV(Loader2, { className: "h-5 w-5 animate-spin", strokeWidth: 3 }, void 0, false, {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+                    lineNumber: 68,
+                    columnNumber: 26
+                  }, this) : /* @__PURE__ */ jsxDEV(Upload, { className: "h-5 w-5", strokeWidth: 3 }, void 0, false, {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+                    lineNumber: 68,
+                    columnNumber: 89
+                  }, this) }, void 0, false, {
+                    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+                    lineNumber: 67,
+                    columnNumber: 13
+                  }, this)
+                ]
+              },
+              void 0,
+              true,
+              {
+                fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+                lineNumber: 57,
+                columnNumber: 11
+              },
+              this
+            ),
+            /* @__PURE__ */ jsxDEV("p", { className: "mt-6 text-xl font-extrabold", children: user.name }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+              lineNumber: 72,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV("p", { className: "mt-1 text-sm font-bold text-black/55", children: user.email }, void 0, false, {
+              fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+              lineNumber: 73,
+              columnNumber: 11
+            }, this),
+            /* @__PURE__ */ jsxDEV(
+              "input",
+              {
+                type: "file",
+                ref: fileInputRef,
+                className: "hidden",
+                accept: "image/png, image/jpeg, image/jpg, image/webp",
+                onChange: handleImageChange
+              },
+              void 0,
+              false,
+              {
+                fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+                lineNumber: 75,
+                columnNumber: 11
+              },
+              this
+            )
+          ]
+        },
+        void 0,
+        true,
+        {
+          fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+          lineNumber: 44,
+          columnNumber: 9
+        },
+        this
+      )
+    },
+    void 0,
+    false,
+    {
+      fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+      lineNumber: 38,
+      columnNumber: 7
+    },
+    this
+  ) }, void 0, false, {
+    fileName: "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx",
+    lineNumber: 37,
+    columnNumber: 5
+  }, this);
+};
+_s(ProfileModal, "P/FUrSpPu5EAunF1LhTiNLzJ330=", false, function() {
+  return [useAuth];
+});
+_c = ProfileModal;
+export default ProfileModal;
+var _c;
+$RefreshReg$(_c, "ProfileModal");
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) {
+  return RefreshRuntime.register(type, "C:/Users/Kushal/Desktop/Projects/ChatBot/frontend/src/components/Auth/ProfileModal.jsx " + id);
+}
+function $RefreshSig$() {
+  return RefreshRuntime.createSignatureFunctionForTransform();
+}
+
+//# sourceMappingURL=data:application/json;base64,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QU8sV0FBVSxXQUFVLGFBQWEsS0FBekM7QUFBQTtBQUFBO0FBQUE7QUFBQSx5QkFBMkMsS0FEdkg7QUFBQTtBQUFBO0FBQUE7QUFBQSx5QkFFQTtBQUFBO0FBQUE7QUFBQSxjQVpGO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxZQWFBO0FBQUEsWUFFQSx1QkFBQyxPQUFFLFdBQVUsK0JBQStCRixlQUFLd0IsUUFBakQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxtQkFBc0Q7QUFBQSxZQUN0RCx1QkFBQyxPQUFFLFdBQVUsd0NBQXdDeEIsZUFBS3lCLFNBQTFEO0FBQUE7QUFBQTtBQUFBO0FBQUEsbUJBQWdFO0FBQUEsWUFFaEU7QUFBQSxjQUFDO0FBQUE7QUFBQSxnQkFDQyxNQUFLO0FBQUEsZ0JBQ0wsS0FBS3JCO0FBQUFBLGdCQUNMLFdBQVU7QUFBQSxnQkFDVixRQUFPO0FBQUEsZ0JBQ1AsVUFBVUM7QUFBQUE7QUFBQUEsY0FMWjtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUEsWUFLOEI7QUFBQTtBQUFBO0FBQUEsUUFwQ2hDO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQSxNQXNDQTtBQUFBO0FBQUEsSUE1Q0Y7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBLEVBNkNBLEtBOUNGO0FBQUE7QUFBQTtBQUFBO0FBQUEsU0ErQ0E7QUFFSjtBQUFFTixHQWhGSUgsY0FBWTtBQUFBLFVBQ21CRCxPQUFPO0FBQUE7QUFBQSxLQUR0Q0M7QUFrRk4sZUFBZUE7QUFBYSxJQUFBOEI7QUFBQSxhQUFBQSxJQUFBIiwibmFtZXMiOlsiUmVhY3QiLCJ1c2VSZWYiLCJ1c2VTdGF0ZSIsIkFuaW1hdGVQcmVzZW5jZSIsIm1vdGlvbiIsIkxvYWRlcjIiLCJVcGxvYWQiLCJVc2VyIiwiVXNlckljb24iLCJYIiwidXNlQXV0aCIsIlByb2ZpbGVNb2RhbCIsImlzT3BlbiIsIm9uQ2xvc2UiLCJfcyIsInVzZXIiLCJ1cGRhdGVQcm9maWxlUGljIiwibG9hZGluZyIsInNldExvYWRpbmciLCJmaWxlSW5wdXRSZWYiLCJoYW5kbGVJbWFnZUNoYW5nZSIsImUiLCJmaWxlIiwidGFyZ2V0IiwiZmlsZXMiLCJzaXplIiwiYWxlcnQiLCJyZWFkZXIiLCJGaWxlUmVhZGVyIiwib25sb2FkZW5kIiwicmVzdWx0IiwiZXJyIiwibWVzc2FnZSIsInJlYWRBc0RhdGFVUkwiLCJvcGFjaXR5IiwieSIsImN1cnJlbnQiLCJjbGljayIsInByb2ZpbGVQaWN0dXJlIiwibmFtZSIsImVtYWlsIiwiX2MiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiUHJvZmlsZU1vZGFsLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QsIHsgdXNlUmVmLCB1c2VTdGF0ZSB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IEFuaW1hdGVQcmVzZW5jZSwgbW90aW9uIH0gZnJvbSAnZnJhbWVyLW1vdGlvbic7XG5pbXBvcnQgeyBMb2FkZXIyLCBVcGxvYWQsIFVzZXIgYXMgVXNlckljb24sIFggfSBmcm9tICdsdWNpZGUtcmVhY3QnO1xuaW1wb3J0IHsgdXNlQXV0aCB9IGZyb20gJy4uLy4uL0NvbnRleHQvQXV0aENvbnRleHQnO1xuXG5jb25zdCBQcm9maWxlTW9kYWwgPSAoeyBpc09wZW4sIG9uQ2xvc2UgfSkgPT4ge1xuICBjb25zdCB7IHVzZXIsIHVwZGF0ZVByb2ZpbGVQaWMgfSA9IHVzZUF1dGgoKTtcbiAgY29uc3QgW2xvYWRpbmcsIHNldExvYWRpbmddID0gdXNlU3RhdGUoZmFsc2UpO1xuICBjb25zdCBmaWxlSW5wdXRSZWYgPSB1c2VSZWYobnVsbCk7XG5cbiAgY29uc3QgaGFuZGxlSW1hZ2VDaGFuZ2UgPSAoZSkgPT4ge1xuICAgIGNvbnN0IGZpbGUgPSBlLnRhcmdldC5maWxlc1swXTtcbiAgICBpZiAoZmlsZSkge1xuICAgICAgaWYgKGZpbGUuc2l6ZSA+IDUgKiAxMDI0ICogMTAyNCkge1xuICAgICAgICBhbGVydCgnRmlsZSBzaXplIG11c3QgYmUgbGVzcyB0aGFuIDVNQicpO1xuICAgICAgICByZXR1cm47XG4gICAgICB9XG5cbiAgICAgIGNvbnN0IHJlYWRlciA9IG5ldyBGaWxlUmVhZGVyKCk7XG4gICAgICByZWFkZXIub25sb2FkZW5kID0gYXN5bmMgKCkgPT4ge1xuICAgICAgICBzZXRMb2FkaW5nKHRydWUpO1xuICAgICAgICB0cnkge1xuICAgICAgICAgIGF3YWl0IHVwZGF0ZVByb2ZpbGVQaWMocmVhZGVyLnJlc3VsdCk7XG4gICAgICAgIH0gY2F0Y2ggKGVycikge1xuICAgICAgICAgIGFsZXJ0KGVyci5tZXNzYWdlKTtcbiAgICAgICAgfSBmaW5hbGx5IHtcbiAgICAgICAgICBzZXRMb2FkaW5nKGZhbHNlKTtcbiAgICAgICAgfVxuICAgICAgfTtcbiAgICAgIHJlYWRlci5yZWFkQXNEYXRhVVJMKGZpbGUpO1xuICAgIH1cbiAgfTtcblxuICBpZiAoIWlzT3BlbiB8fCAhdXNlcikgcmV0dXJuIG51bGw7XG5cbiAgcmV0dXJuIChcbiAgICA8QW5pbWF0ZVByZXNlbmNlPlxuICAgICAgPG1vdGlvbi5kaXZcbiAgICAgICAgaW5pdGlhbD17eyBvcGFjaXR5OiAwIH19XG4gICAgICAgIGFuaW1hdGU9e3sgb3BhY2l0eTogMSB9fVxuICAgICAgICBleGl0PXt7IG9wYWNpdHk6IDAgfX1cbiAgICAgICAgY2xhc3NOYW1lPVwiZml4ZWQgaW5zZXQtMCB6LTUwIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIGJnLWJsYWNrLzU1IHAtNFwiXG4gICAgICA+XG4gICAgICAgIDxtb3Rpb24uZGl2XG4gICAgICAgICAgaW5pdGlhbD17eyBvcGFjaXR5OiAwLCB5OiAxOCB9fVxuICAgICAgICAgIGFuaW1hdGU9e3sgb3BhY2l0eTogMSwgeTogMCB9fVxuICAgICAgICAgIGV4aXQ9e3sgb3BhY2l0eTogMCwgeTogMTIgfX1cbiAgICAgICAgICBjbGFzc05hbWU9XCJicnV0YWwtY2FyZCByZWxhdGl2ZSBmbGV4IHctZnVsbCBtYXgtdy1zbSBmbGV4LWNvbCBpdGVtcy1jZW50ZXIgYmctd2hpdGUgcC02IHRleHQtY2VudGVyXCJcbiAgICAgICAgPlxuICAgICAgICAgIDxidXR0b24gb25DbGljaz17b25DbG9zZX0gY2xhc3NOYW1lPVwiYnJ1dGFsLWljb24tYnV0dG9uIGFic29sdXRlIHJpZ2h0LTQgdG9wLTQgaC0xMCB3LTEwIHNoYWRvdy1icnV0YWxTbVwiIGFyaWEtbGFiZWw9XCJDbG9zZVwiPlxuICAgICAgICAgICAgPFggY2xhc3NOYW1lPVwiaC01IHctNVwiIHN0cm9rZVdpZHRoPXszfSAvPlxuICAgICAgICAgIDwvYnV0dG9uPlxuXG4gICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC1bMTFweF0gZm9udC1leHRyYWJvbGQgdXBwZXJjYXNlIHRyYWNraW5nLVswLjE4ZW1dIHRleHQtYmxhY2svNTVcIj5Qcm9maWxlPC9wPlxuICAgICAgICAgIDxoMiBjbGFzc05hbWU9XCJtdC0xIHRleHQtM3hsIGZvbnQtZXh0cmFib2xkXCI+UHJvZmlsZSBQaWN0dXJlPC9oMj5cblxuICAgICAgICAgIDxidXR0b25cbiAgICAgICAgICAgIHR5cGU9XCJidXR0b25cIlxuICAgICAgICAgICAgY2xhc3NOYW1lPVwiYnJ1dGFsLWJ1dHRvbiByZWxhdGl2ZSBtdC02IGZsZXggaC0zNiB3LTM2IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciBvdmVyZmxvdy1oaWRkZW4gcm91bmRlZC1bMThweF0gYmcteWVsbG93XCJcbiAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+ICFsb2FkaW5nICYmIGZpbGVJbnB1dFJlZi5jdXJyZW50Py5jbGljaygpfVxuICAgICAgICAgID5cbiAgICAgICAgICAgIHt1c2VyLnByb2ZpbGVQaWN0dXJlID8gKFxuICAgICAgICAgICAgICA8aW1nIHNyYz17dXNlci5wcm9maWxlUGljdHVyZX0gYWx0PVwiUHJvZmlsZVwiIGNsYXNzTmFtZT1cImgtZnVsbCB3LWZ1bGwgb2JqZWN0LWNvdmVyXCIgLz5cbiAgICAgICAgICAgICkgOiAoXG4gICAgICAgICAgICAgIDxVc2VySWNvbiBjbGFzc05hbWU9XCJoLTE0IHctMTRcIiBzdHJva2VXaWR0aD17M30gLz5cbiAgICAgICAgICAgICl9XG4gICAgICAgICAgICA8c3BhbiBjbGFzc05hbWU9XCJhYnNvbHV0ZSBib3R0b20tMiByaWdodC0yIGZsZXggaC0xMSB3LTExIGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciByb3VuZGVkLXhsIGJvcmRlci1bM3B4XSBib3JkZXItYmxhY2sgYmctd2hpdGVcIj5cbiAgICAgICAgICAgICAge2xvYWRpbmcgPyA8TG9hZGVyMiBjbGFzc05hbWU9XCJoLTUgdy01IGFuaW1hdGUtc3BpblwiIHN0cm9rZVdpZHRoPXszfSAvPiA6IDxVcGxvYWQgY2xhc3NOYW1lPVwiaC01IHctNVwiIHN0cm9rZVdpZHRoPXszfSAvPn1cbiAgICAgICAgICAgIDwvc3Bhbj5cbiAgICAgICAgICA8L2J1dHRvbj5cblxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cIm10LTYgdGV4dC14bCBmb250LWV4dHJhYm9sZFwiPnt1c2VyLm5hbWV9PC9wPlxuICAgICAgICAgIDxwIGNsYXNzTmFtZT1cIm10LTEgdGV4dC1zbSBmb250LWJvbGQgdGV4dC1ibGFjay81NVwiPnt1c2VyLmVtYWlsfTwvcD5cblxuICAgICAgICAgIDxpbnB1dFxuICAgICAgICAgICAgdHlwZT1cImZpbGVcIlxuICAgICAgICAgICAgcmVmPXtmaWxlSW5wdXRSZWZ9XG4gICAgICAgICAgICBjbGFzc05hbWU9XCJoaWRkZW5cIlxuICAgICAgICAgICAgYWNjZXB0PVwiaW1hZ2UvcG5nLCBpbWFnZS9qcGVnLCBpbWFnZS9qcGcsIGltYWdlL3dlYnBcIlxuICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUltYWdlQ2hhbmdlfVxuICAgICAgICAgIC8+XG4gICAgICAgIDwvbW90aW9uLmRpdj5cbiAgICAgIDwvbW90aW9uLmRpdj5cbiAgICA8L0FuaW1hdGVQcmVzZW5jZT5cbiAgKTtcbn07XG5cbmV4cG9ydCBkZWZhdWx0IFByb2ZpbGVNb2RhbDtcbiJdLCJmaWxlIjoiQzovVXNlcnMvS3VzaGFsL0Rlc2t0b3AvUHJvamVjdHMvQ2hhdEJvdC9mcm9udGVuZC9zcmMvY29tcG9uZW50cy9BdXRoL1Byb2ZpbGVNb2RhbC5qc3gifQ==
