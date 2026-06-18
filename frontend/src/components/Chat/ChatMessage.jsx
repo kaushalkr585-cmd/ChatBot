@@ -26,21 +26,6 @@ const ChatMessage = ({ message }) => {
         </div>
       )}
 
-<<<<<<< HEAD
-      <div className={cn(
-        "flex flex-col gap-2 max-w-[85%] sm:max-w-[80%] min-w-0 flex-shrink-1",
-      )}>
-        <div className={cn(
-          "px-4 py-3 rounded-2xl glassmorphism font-medium text-[15px] leading-relaxed relative group break-words min-w-0 overflow-visible",
-          isUser ? "bg-accent/5 rounded-tr-sm border-accent/20" : "rounded-tl-sm"
-        )}>
-          {isUser ? (
-            <p className="whitespace-pre-wrap">{message.content}</p>
-          ) : (
-             <div className="markdown-body prose dark:prose-invert max-w-full text-foreground prose-p:leading-relaxed prose-pre:bg-secondary prose-pre:border prose-pre:border-border prose-pre:p-4 prose-code:text-accent prose-pre:overflow-x-auto prose-pre:max-w-full min-w-0">
-               <ReactMarkdown>{message.content}</ReactMarkdown>
-             </div>
-=======
       <div className={cn('group flex max-w-[86%] flex-col gap-2 sm:max-w-[70%]', isUser && 'items-end')}>
         <div
           className={cn(
@@ -54,7 +39,6 @@ const ChatMessage = ({ message }) => {
               alt="Uploaded preview"
               className="mb-3 max-h-72 rounded-[14px] border-[3px] border-[var(--border)] object-cover"
             />
->>>>>>> f35d7cb (updated ui)
           )}
 
           {isUser ? (
