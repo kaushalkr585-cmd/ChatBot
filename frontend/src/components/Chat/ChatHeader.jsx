@@ -16,47 +16,72 @@ const ChatHeader = ({
 
   return (
     <header className="flex shrink-0 items-center justify-between gap-2 border-b-[3px] border-[var(--border)] bg-[var(--surface)] px-3 py-2 sm:gap-3 lg:px-6 lg:py-3">
-      <div className="flex min-w-0 items-center gap-3">
+      {/* Left: Menu + Logo + Title */}
+      <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
         <button
           onClick={toggleSidebar}
-          className="brutal-icon-button h-11 w-11 lg:hidden"
+          className="brutal-icon-button h-10 w-10 shrink-0 lg:hidden"
           aria-label="Open sidebar"
         >
           <Menu className="h-5 w-5" strokeWidth={3} />
         </button>
 
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border-[3px] border-black bg-yellow shadow-brutalSm">
-          <Bot className="h-7 w-7 text-black" strokeWidth={3} />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border-[3px] border-black bg-yellow shadow-brutalSm sm:h-12 sm:w-12">
+          <Bot className="h-6 w-6 text-black sm:h-7 sm:w-7" strokeWidth={3} />
         </div>
 
-        <div className="min-w-0">
-          <h2 className="truncate text-lg font-extrabold leading-tight sm:text-2xl">AI Chat</h2>
+        <div className="min-w-0 flex-1">
+          <h2 className="text-xl font-extrabold leading-tight sm:text-2xl">AI Chat</h2>
+          <p className="hidden text-[11px] font-bold text-[var(--muted)] sm:block">Powered by NVIDIA</p>
         </div>
       </div>
 
-      <div className="flex shrink-0 items-center gap-2">
-        <button onClick={onSettingsClick} className="brutal-icon-button" aria-label="Settings" title="Settings">
+      {/* Right: Action buttons */}
+      <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+        {/* Settings — hidden on mobile, visible sm+ */}
+        <button
+          onClick={onSettingsClick}
+          className="brutal-icon-button hidden h-10 w-10 sm:flex"
+          aria-label="Settings"
+          title="Settings"
+        >
           <Settings className="h-5 w-5" strokeWidth={3} />
         </button>
 
+        {/* Clear / Reset — hidden on mobile, visible sm+ */}
         <button
           onClick={onClearChat}
           disabled={!hasMessages}
-          className="brutal-icon-button disabled:cursor-not-allowed disabled:opacity-45"
+          className="brutal-icon-button hidden h-10 w-10 disabled:cursor-not-allowed disabled:opacity-45 sm:flex"
           aria-label="Clear chat"
           title="Clear chat"
         >
-          {hasMessages ? <Trash2 className="h-5 w-5" strokeWidth={3} /> : <RotateCcw className="h-5 w-5" strokeWidth={3} />}
+          {hasMessages ? (
+            <Trash2 className="h-5 w-5" strokeWidth={3} />
+          ) : (
+            <RotateCcw className="h-5 w-5" strokeWidth={3} />
+          )}
         </button>
 
-        <button onClick={toggleTheme} className="brutal-icon-button" aria-label="Toggle theme" title="Theme">
-          {theme === 'dark' ? <Sun className="h-5 w-5" strokeWidth={3} /> : <Moon className="h-5 w-5" strokeWidth={3} />}
+        {/* Theme toggle — always visible */}
+        <button
+          onClick={toggleTheme}
+          className="brutal-icon-button h-10 w-10"
+          aria-label="Toggle theme"
+          title="Theme"
+        >
+          {theme === 'dark' ? (
+            <Sun className="h-5 w-5" strokeWidth={3} />
+          ) : (
+            <Moon className="h-5 w-5" strokeWidth={3} />
+          )}
         </button>
 
+        {/* Auth / Profile — always visible */}
         {user ? (
           <button
             onClick={onProfileClick}
-            className="brutal-icon-button overflow-hidden bg-green"
+            className="brutal-icon-button h-10 w-10 overflow-hidden bg-green"
             aria-label="Profile"
             title={user.name}
           >
@@ -68,9 +93,16 @@ const ChatHeader = ({
           </button>
         ) : (
           <>
-            <button onClick={onAuthClick} className="brutal-icon-button sm:hidden" aria-label="Sign in" title="Sign in">
+            {/* Mobile: icon only */}
+            <button
+              onClick={onAuthClick}
+              className="brutal-icon-button h-10 w-10 bg-yellow text-black sm:hidden"
+              aria-label="Sign in"
+              title="Sign in"
+            >
               <LogIn className="h-5 w-5" strokeWidth={3} />
             </button>
+            {/* sm+: labelled button */}
             <button
               onClick={onAuthClick}
               className="brutal-button hidden items-center gap-2 bg-yellow px-4 py-2.5 text-sm font-extrabold text-black sm:flex"
