@@ -100,7 +100,7 @@ const ChatInput = ({ onSend, isTyping }) => {
 
   return (
     <footer className="relative shrink-0 border-t-[3px] border-[var(--border)] bg-[var(--surface)] px-2 pt-2 pb-[calc(8px+env(safe-area-inset-bottom))] sm:px-5 sm:py-4">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto w-full max-w-5xl">
         <AnimatePresence>
           {showEmojiPicker && (
             <motion.div
@@ -139,7 +139,7 @@ const ChatInput = ({ onSend, isTyping }) => {
           )}
         </AnimatePresence>
 
-        <div className="brutal-input flex items-end gap-1.5 bg-[var(--surface)] p-1.5 sm:gap-3 sm:p-3">
+        <div className="brutal-input flex w-full items-end gap-1.5 bg-[var(--surface)] p-1.5 sm:gap-3 sm:p-3">
           <label className="brutal-icon-button h-10 w-10 shrink-0 bg-[var(--surface)] shadow-brutalSm sm:h-12 sm:w-12" title="Add image" aria-label="Add image">
             <ImageIcon className="h-5 w-5" strokeWidth={3} />
             <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} />

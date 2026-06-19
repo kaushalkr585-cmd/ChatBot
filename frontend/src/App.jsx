@@ -168,10 +168,10 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen overflow-hidden bg-background text-foreground selection:bg-yellow selection:text-black">
+    <div className="w-full min-h-screen overflow-hidden bg-background text-foreground selection:bg-yellow selection:text-black">
       <Background />
 
-      <div className="flex h-[100dvh] gap-0 p-0 lg:gap-6 lg:p-6">
+      <div className="flex flex-col lg:flex-row w-full h-[100dvh] gap-0 p-0 lg:gap-6 lg:p-6">
         <Sidebar
           isOpen={isSidebarOpen}
           currentChatId={currentChatId}
