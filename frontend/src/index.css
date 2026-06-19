@@ -38,19 +38,24 @@
     --shadow-color: #000000;
   }
 
-  * {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
   }
 
-  html,
-  body,
-  #root {
-    min-height: 100%;
+  /* Lock the entire page — only the messages container may scroll */
+  html {
+    height: 100%;
+    overflow: hidden;
+    overflow-x: hidden;
   }
 
   body {
+    height: 100%;
     margin: 0;
     overflow: hidden;
+    overflow-x: hidden;
     background: var(--background);
     color: var(--foreground);
     font-family: 'Pixelify Sans', system-ui, -apple-system, sans-serif;
@@ -58,6 +63,16 @@
     letter-spacing: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Prevent iOS bounce scroll on body */
+    position: fixed;
+    width: 100%;
+  }
+
+  #root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: hidden;
   }
 
   button,
@@ -84,15 +99,16 @@
   .brutal-icon-button {
     border: 3px solid var(--border);
     border-radius: 14px;
-    box-shadow: 6px 6px 0 var(--shadow-color);
+    box-shadow: 4px 4px 0 var(--shadow-color);
     color: var(--foreground);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, color 0.15s ease;
   }
 
   .brutal-button:hover,
   .brutal-icon-button:hover,
   .brutal-press:hover {
     transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--shadow-color);
   }
 
   .brutal-button:active,
@@ -104,12 +120,13 @@
 
   .brutal-icon-button {
     display: inline-flex;
-    min-height: 40px;
-    min-width: 40px;
     align-items: center;
     justify-content: center;
     background: var(--surface);
     color: var(--foreground);
+    /* Minimum tap target for mobile accessibility */
+    min-height: 44px;
+    min-width: 44px;
   }
 
   .brutal-input {
@@ -125,6 +142,7 @@
     outline-offset: 2px;
   }
 
+  /* Markdown content inside bot messages */
   .markdown-body h1,
   .markdown-body h2,
   .markdown-body h3 {
@@ -144,22 +162,32 @@
   .markdown-body pre {
     margin: 0.75rem 0;
     overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .markdown-body code {
+    word-break: break-all;
+  }
+
+  .markdown-body img {
+    max-width: 100%;
   }
 }
 
 @layer utilities {
+  /* Only the messages scrollbar gets styled */
   .custom-scrollbar::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
     background: var(--surface);
-    border-left: 3px solid var(--border);
+    border-left: 2px solid var(--border);
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background: #ffe600;
-    border: 3px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 999px;
   }
 
@@ -176,5 +204,11 @@
   .dark .surface-white {
     background-color: var(--surface) !important;
     color: var(--foreground) !important;
+  }
+
+  /* Utility to prevent any horizontal overflow leaking out */
+  .no-overflow-x {
+    overflow-x: hidden;
+    max-width: 100%;
   }
 }

@@ -15,7 +15,7 @@ function App() {
   const { user, token } = useAuth();
   const { language, theme, toggleTheme } = useSettings();
   const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
-    if (typeof window === 'undefined') return true;
+    if (typeof window === 'undefined') return false;
     return window.matchMedia('(min-width: 1024px)').matches;
   });
   const [messages, setMessages] = useState([]);
@@ -73,7 +73,7 @@ function App() {
           const newChat = await res.json();
           activeChatId = newChat._id;
           setCurrentChatId(activeChatId);
-          setSidebarRefreshKey((k) => k + 1); // trigger sidebar refresh
+          setSidebarRefreshKey((k) => k + 1);
         }
       } catch (err) {
         console.error('Failed to create chat', err);
@@ -83,9 +83,6 @@ function App() {
     }
 
     try {
-      // Build API messages from ALL messages including the new user message
-      // Use newMessagesArray (includes current user message) but exclude the last one
-      // when constructing history, then append the current message in proper format
       const historyMessages = newMessagesArray.slice(0, -1);
       const apiMessages = historyMessages.map((message) => {
         if (!message.hasImage) return { role: message.role, content: message.content };
@@ -168,10 +165,23 @@ function App() {
   };
 
   return (
-    <div className="w-full min-h-screen overflow-hidden bg-background text-foreground selection:bg-yellow selection:text-black">
+    /*
+     * Root shell — locks the entire viewport.
+     * h-[100dvh] uses the dynamic viewport height unit so Android Chrome's
+     * collapsing toolbar does NOT cause layout jumps.
+     * overflow-hidden on every level ensures nothing escapes the shell.
+     */
+    <div className="h-[100dvh] w-full overflow-hidden bg-background text-foreground selection:bg-yellow selection:text-black">
+      {/* Decorative background — fixed, behind everything */}
       <Background />
 
-      <div className="flex flex-col lg:flex-row w-full h-[100dvh] gap-0 p-0 lg:gap-6 lg:p-6">
+      {/*
+       * Full-height flex row.
+       * On desktop (lg+): sidebar (300 px) + main area side-by-side with gap/padding.
+       * On mobile: only main area (sidebar is a fixed overlay handled by Sidebar.jsx).
+       */}
+      <div className="flex h-full w-full overflow-hidden lg:gap-6 lg:p-6">
+        {/* Sidebar: renders as a static block on desktop, fixed slide-over on mobile */}
         <Sidebar
           isOpen={isSidebarOpen}
           currentChatId={currentChatId}
@@ -183,29 +193,49 @@ function App() {
           }}
           onNewChat={handleNewChat}
           onChatDeleted={(deletedId) => {
-            if (currentChatId === deletedId) {
-              handleNewChat();
-            }
+            if (currentChatId === deletedId) handleNewChat();
           }}
           onSettingsClick={() => setIsSettingsOpen(true)}
         />
 
-        <main className="relative z-10 flex min-w-0 flex-1 flex-col overflow-hidden bg-[var(--surface)] lg:border-[3px] lg:border-[var(--border)] lg:rounded-[18px] lg:shadow-[6px_6px_0_var(--shadow-color)]">
+        {/*
+         * Main column — fills all remaining horizontal space.
+         * flex-col so ChatHeader / ChatArea / ChatInput stack vertically.
+         * overflow-hidden so nothing bleeds outside this container.
+         * min-w-0 prevents flex children from overflowing their container.
+         */}
+        <main className="relative z-10 flex min-w-0 flex-1 flex-col overflow-hidden bg-[var(--surface)] lg:rounded-[18px] lg:border-[3px] lg:border-[var(--border)] lg:shadow-[6px_6px_0_var(--shadow-color)]">
+          {/*
+           * ChatHeader: shrink-0 so it NEVER shrinks regardless of content below.
+           * It is part of the flex column, not fixed/absolute — this is intentional.
+           * Being in-flow means it can never overlap or be overlapped by siblings.
+           */}
           <ChatHeader
             theme={theme}
             toggleTheme={toggleTheme}
-            toggleSidebar={() => setIsSidebarOpen((value) => !value)}
+            toggleSidebar={() => setIsSidebarOpen((v) => !v)}
             onAuthClick={() => setIsAuthOpen(true)}
             onProfileClick={() => setIsProfileOpen(true)}
             onSettingsClick={() => setIsSettingsOpen(true)}
             onClearChat={handleClearChat}
             hasMessages={messages.length > 0}
           />
+
+          {/*
+           * ChatArea: flex-1 + overflow-y-auto = ONLY this region scrolls.
+           * min-h-0 overrides the flex default min-height so overflow-y-auto works.
+           */}
           <ChatArea messages={messages} isTyping={isTyping} onSuggestionClick={handleSend} />
+
+          {/*
+           * ChatInput: shrink-0 so it always stays pinned at the bottom of the column.
+           * Being in-flow (not fixed) avoids all the Android Chrome viewport issues.
+           */}
           <ChatInput onSend={handleSend} isTyping={isTyping} />
         </main>
       </div>
 
+      {/* Modal overlays — rendered outside the scroll context */}
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
       <ProfileModal isOpen={isProfileOpen} onClose={() => setIsProfileOpen(false)} />
       <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
